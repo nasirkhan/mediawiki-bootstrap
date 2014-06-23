@@ -26,7 +26,7 @@ $wgResourceModules['skins.mediawikibootstrap'] = array(
                 'MediaWikiBootstrap/css/bootstrap.min.css' => array( 'media' => 'screen' ),
                 'MediaWikiBootstrap/css/font-awesome.min.css' => array( 'media' => 'screen' ),
                 'MediaWikiBootstrap/css/screen.css' => array( 'media' => 'screen' ),
-                'MediaWikiBootstrap/css/theme.css' => array( 'media' => 'screen' ),
+                'MediaWikiBootstrap/css/print.css' => array( 'media' => 'print' ),
 	),
 	'scripts' => array(
 		'MediaWikiBootstrap/js/bootstrap.min.js',
@@ -38,10 +38,9 @@ $wgResourceModules['skins.mediawikibootstrap'] = array(
 
 
 // # Default options to customize skin
-// $wgStrappingSkinLogoLocation = 'bodycontent';
-// $wgStrappingSkinLoginLocation = 'footer';
-// $wgStrappingSkinAnonNavbar = false;
-// $wgStrappingSkinUseStandardLayout = false;
-// $wgStrappingSkinDisplaySidebarNavigation = false;
+ $wgMediaWikiBootstrapSkinLoginLocation = 'footer';
+ $wgMediaWikiBootstrapSkinAnonNavbar = false;
+ $wgMediaWikiBootstrapSkinUseStandardLayout = false;
+ $wgMediaWikiBootstrapSkinDisplaySidebarNavigation = false;
 // # Show print/export in navbar by default
-// $wgStrappingSkinSidebarItemsInNavbar = array( 'coll-print_export' );
+ $wgMediaWikiBootstrapSkinSidebarItemsInNavbar = array( 'coll-print_export' );

@@ -58,7 +58,7 @@ class SkinMediaWikiBootstrap extends SkinTemplate {
         // See: https://bugzilla.wikimedia.org/show_bug.cgi?id=38586
         // &: http://stackoverflow.com/questions/11593312/do-media-queries-work-in-mediawiki
         //
-        //$out->addModuleStyles( 'skins.strapping' );
+        //$out->addModuleStyles( 'skins.mediawikibootstrap' );
         // Instead, we're going to manually add each, 
         // so we can use media queries
         foreach ($wgResourceModules['skins.mediawikibootstrap']['styles'] as $cssfile => $cssvals) {
@@ -85,14 +85,18 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         global $wgGroupPermissions;
         global $wgVectorUseIconWatch;
         global $wgSearchPlacement;
-        
+        global $wgMediaWikiBootstrapSkinLoginLocation;        
+        global $wgMediaWikiBootstrapSkinAnonNavbar;
+        global $wgMediaWikiBootstrapSkinUseStandardLayout;
+
+
         // Suppress warnings to prevent notices about missing indexes in $this->data
         wfSuppressWarnings();
         
+        // search box locations 
         if (!$wgSearchPlacement) {
             $wgSearchPlacement['top-nav'] = true;
             $wgSearchPlacement['nav'] = true;
-            $wgSearchPlacement['footer'] = false;
         }
         
         // Build additional attributes for navigation urls
@@ -139,6 +143,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         ?>
         <div id="globalWrapper" class="container">
             <!-- start navbar -->
+            
+            <?php if ($wgGroupPermissions['*']['edit'] || $wgMediaWikiBootstrapSkinAnonNavbar || $this->data['loggedin']) : ?>
             <div class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -186,15 +192,263 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </div><!--/.nav-collapse -->
                 </div><!--/.container-fluid -->
             </div> <!-- /navbar -->
-        </div><!-- /#globalWrapper -->
+            <?php endif; ?>
+            
+            <div id="mw-page-base" class="noprint"></div>
+            <div id="mw-head-base" class="noprint"></div>
+            
+            <?php
+            if ($this->data['loggedin']) {
+                $userStateClass = "user-loggedin";
+            } else {
+                $userStateClass = "user-loggedout";
+            }
+            ?>
 
-        // [...]
+            <?php
+            if ($wgGroupPermissions['*']['edit'] || $this->data['loggedin']) {
+                $userStateClass += " editable";
+            } else {
+                $userStateClass += " not-editable";
+            }
+            ?>
+            
+            <div id="wrapper">
+            
+            <section id="header">
+                <div id="page-header" class="row">
+                    <!--site logo--> 
+                    <div id="logo" class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="<?php echo $this->data['loggedin'] ? 'signed-in' : 'signed-out'; ?>">
+                            <?php $this->renderLogo(); ?>
+                        </div>
+                    </div>
+                    
+                    <div id="main-nav">
+                        <!--navigation menu-->
+                         
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand visible-phone" href="#"><?php $this->html('sitename'); ?></a>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <?php
+                                        $this->renderNavigation(array('SIDEBAR'));
+
+                                        if ($wgSearchPlacement['nav']) {
+                                            $this->renderNavigation(array('SEARCHNAV'));
+                                        }
+                                        /*
+                                        # This content in other languages
+                                        if ($this->data['language_urls']) {
+                                                $this->renderNavigation(array('LANGUAGES'));
+                                        }
+                                        */
+                                        ?>
+                                    </ul>
+                                </div><!-- /.navbar-collapse -->
+                            </div><!-- /.container-fluid -->
+                        </nav>
+
+                        
+                        
+                    </div>
+                </div>
+            </section> 
+            <!-- /page-header -->                       
+
+            <!-- content -->
+            <section id="content" class="mw-body <?php echo $userStateClass; ?>">
+                <div id="top"></div>
+                <div class="row">
+                    <div id="mw-js-message" class="col-xm-12 col-sm-12 col-md-12 col-lg-12" style="display:none;"<?php $this->html('userlangattributes') ?>></div>
+                </div>
+                <?php if ($this->data['sitenotice']): ?>
+                    <!-- sitenotice -->
+                    <div class="row">
+                        <div id="siteNotice"><?php $this->html('sitenotice') ?></div>
+                    </div>
+                    <!-- /sitenotice -->
+                <?php endif; ?>
+
+                <div class="clearfix"></div>    
+                <div id="bodyContent" class="row">
+                    <?php if ($this->data['newtalk']): ?>
+                        <!-- newtalk -->
+                        <div class="usermessage"><?php $this->html('newtalk') ?></div>
+                        <!-- /newtalk -->
+                    <?php endif; ?>
+                    <?php if ($this->data['showjumplinks']): ?>
+                        <!-- jumpto -->
+                        <div id="jump-to-nav" class="mw-jump">
+                            <?php $this->msg('jumpto') ?> <a href="#mw-head"><?php $this->msg('jumptonavigation') ?></a>,
+                            <a href="#p-search"><?php $this->msg('jumptosearch') ?></a>
+                        </div>
+                        <!-- /jumpto -->
+                    <?php endif; ?>
+                        
+                    <!-- innerbodycontent -->
+                    <div id="innerbodycontent">
+                        <div class="col-xm-12 col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-8 col-lg-offset-1 col-lg-8">
+                            <h1 id="firstHeading" class="firstHeading page-header">
+                                <span dir="auto"><?php $this->html('title') ?></span>
+                            </h1>
+                        </div>
+                        <div id="other_language_link" class="col-xm-12 col-sm-2 col-md-2 col-lg-2 pull-right">
+                            <?php 
+                            if ($this->data['language_urls']) {
+                                $this->renderNavigation(array('LANGUAGES'));
+                            }
+                            ?>
+                        </div>
+                        <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">   
+                            <hr>
+                            <!-- subtitle -->
+                            <div id="contentSub" <?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
+                            <!-- /subtitle -->
+                            <?php if ($this->data['undelete']): ?>
+                                <!-- undelete -->
+                                <div id="contentSub2"><?php $this->html('undelete') ?></div>
+                                <!-- /undelete -->
+                            <?php endif; ?>
+                            <?php $this->html('bodycontent'); ?>
+                        </div>
+                    </div>
+                    <!-- /innerbodycontent -->    
+
+                    <?php if ($this->data['printfooter']): ?>
+                    <!-- printfooter -->
+                    <div class="printfooter">
+                        <?php $this->html('printfooter'); ?>
+                    </div>
+                    <!-- /printfooter -->
+                    <?php endif; ?>
+                    <?php if ($this->data['catlinks']): ?>
+                        <!-- catlinks -->
+                        <div class="row">
+                            <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                                <?php $this->html('catlinks'); ?>
+                            </div>
+                        </div>
+                        <!-- /catlinks -->
+                    <?php endif; ?>
+                    <?php if ($this->data['dataAfterContent']): ?>
+                        <!-- dataAfterContent -->
+                        <?php $this->html('dataAfterContent'); ?>
+                        <!-- /dataAfterContent -->
+                    <?php endif; ?>
+                    <div class="visualClear"></div>
+                    <!-- debughtml -->
+                    <?php $this->html('debughtml'); ?>
+                    <!-- /debughtml -->
+                </div> 
+            </section>
+            <!-- /content -->
+            
+            </div>
+            <?php
+            /* Support a custom footer, or use MediaWiki's default, if footer.php does not exist. */
+            $footerfile = dirname(__FILE__) . '/footer.php';
+
+            if (file_exists($footerfile)) : ?>
+                <div id="footer" class="footer row custom-footer">
+                    <?php include( $footerfile ); ?>
+                </div> <?php
+            else : ?>
+                <div id="footer" class="footer"<?php $this->html('userlangattributes') ?>>
+                    <hr>
+                    <div class="row">
+                        <?php
+                        $footerLinks = $this->getFooterLinks();
+
+                        if (is_array($footerLinks)) {
+                            foreach ($footerLinks as $category => $links):
+                                if ($category === 'info') {
+                                    continue;
+                                }
+                                ?>
+
+                                <ul id="footer-<?php echo $category ?>" class="list-inline text-center">
+                                    <?php foreach ($links as $link): ?>
+                                        <li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html($link) ?></li>
+                                    <?php endforeach; ?>
+                                    <?php
+                                    if ($category === 'places') {
+
+                                        # Show sign in link, if not signed in
+                                        if ($wgMediaWikiBootstrapSkinLoginLocation == 'footer' && !$this->data['loggedin']) {
+                                            $personalTemp = $this->getPersonalTools();
+
+                                            if (isset($personalTemp['login'])) {
+                                                $loginType = 'login';
+                                            } else {
+                                                $loginType = 'anonlogin';
+                                            }
+                                            ?>
+                                            <li id="pt-login">
+                                                <a href="<?php echo $personalTemp[$loginType]['links'][0]['href'] ?>"><?php echo $personalTemp[$loginType]['links'][0]['text']; ?></a>
+                                            </li><?php
+                                        }
+                                    } ?>
+                                </ul>
+                                <?php
+                            endforeach;
+                        }
+                        
+                        $footericons = $this->getFooterIcons("icononly");
+                        if (count($footericons) > 0):
+                            ?>
+                            <ul id="footer-icons" class="noprint list-inline text-center">
+                                <?php foreach ($footericons as $blockName => $footerIcons): ?>
+                                    <li id="footer-<?php echo htmlspecialchars($blockName); ?>ico">
+                                        <?php foreach ($footerIcons as $icon): ?>
+                                            <?php echo $this->getSkin()->makeFooterIcon($icon); ?>
+
+                                        <?php endforeach; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <!-- /footer -->
+            <?php endif; ?>
 
         <?php $this->printTrail(); ?>
+            
+        </div><!-- /#globalWrapper -->
+
         </body>
         </html><?php
         wfRestoreWarnings();
     }
+    
+    
+    /**
+     * Render logo
+     */
+    private function renderLogo() {
+        $mainPageLink = $this->data['nav_urls']['mainpage']['href'];
+        $toolTip = Xml::expandAttributes(Linker::tooltipAndAccesskeyAttribs('p-logo'));
+        ?>
+        <div id="p-logo" class="text-center">
+            <a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href']) ?>" <?php echo Xml::expandAttributes(Linker::tooltipAndAccesskeyAttribs('p-logo')) ?>><img class="logo_image" src="<?php $this->text('logopath'); ?>" alt="<?php $this->html('sitename'); ?>"></a>
+        <div>
+        <?php
+    }
+    
     
     /**
      * Render one or more navigations elements by name, automatically reveresed
@@ -203,10 +457,9 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
      * @param $elements array
      */
     private function renderNavigation($elements) {
-        global $wgVectorUseSimpleSearch;
-//        global $wgStrappingSkinLoginLocation;
-//        global $wgStrappingSkinDisplaySidebarNavigation;
-//        global $wgStrappingSkinSidebarItemsInNavbar;
+        global $wgVectorUseSimpleSearch;        
+        global $wgMediaWikiBootstrapSkinDisplaySidebarNavigation;
+        global $wgMediaWikiBootstrapSkinSidebarItemsInNavbar;
         // If only one element was given, wrap it in an array, allowing more
         // flexible arguments
         if (!is_array($elements)) {
@@ -301,7 +554,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         if (!$content) {
                             continue;
                         }
-                        if (!in_array($name, $wgStrappingSkinSidebarItemsInNavbar)) {
+                        if (!in_array($name, $wgMediaWikiBootstrapSkinSidebarItemsInNavbar)) {
                             continue;
                         }
                         $msgObj = wfMessage($name);
@@ -369,8 +622,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         
                 case 'TOP-NAV-SEARCH':
                     ?>
-                    <form class="navbar-form navbar-right" action="<?php $this->text('wgScript') ?>" id="searchform">
-                        <input id="searchInput" class="form-control search-query" type="search" accesskey="f" title="<?php $this->text('searchtitle'); ?>" placeholder="<?php $this->msg('search'); ?>" name="search" value="<?php echo htmlspecialchars($this->data['search']); ?>">
+                    <form class="navbar-form navbar-right" action="<?php $this->text('wgScript') ?>" id="nav-searchform">
+                        <input id="nav-searchInput" class="form-control search-query" type="search" accesskey="f" title="<?php $this->text('searchtitle'); ?>" placeholder="<?php $this->msg('search'); ?>" name="search" value="<?php echo htmlspecialchars($this->data['search']); ?>">
                         <?php echo $this->makeSearchButton('fulltext', array('id' => 'mw-searchButton', 'class' => 'searchButton btn hidden')); ?>
                     </form>
 
@@ -397,7 +650,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             }
                             ?>
                         </li>
-                        <?php if ($wgStrappingSkinLoginLocation == 'navbar'): ?>
+                        <?php if ($wgMediaWikiBootstrapSkinLoginLocation == 'navbar'): ?>
                             <li class="dropdown" id="p-createaccount" class="vectorMenu<?php if (count($theData) == 0) echo ' emptyPortlet'; ?>">
                                 <?php
                                 if (array_key_exists('createaccount', $theData)) {
@@ -441,8 +694,57 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     <?php
                     break;
                     
-                    
-                    
+                case 'SIDEBAR':
+                    foreach ($this->data['sidebar'] as $name => $content) {
+                        if (!isset($content)) {
+                            continue;
+                        }
+                        if (in_array($name, $wgMediaWikiBootstrapSkinSidebarItemsInNavbar)) {
+                            continue;
+                        }
+                        $msgObj = wfMessage($name);
+                        $name = htmlspecialchars($msgObj->exists() ? $msgObj->text() : $name );
+                        if ($wgMediaWikiBootstrapSkinDisplaySidebarNavigation) {
+                            ?>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" role="button">
+                                    <?php echo htmlspecialchars($name); ?><b class="caret"></b>
+                                </a>
+                                <ul aria-labelledby="<?php echo htmlspecialchars($name); ?>" role="menu" class="dropdown-menu"><?php
+                                }
+                                # This is a rather hacky way to name the nav.
+                                # (There are probably bugs here...) 
+                                foreach ($content as $key => $val) :
+                                    $navClasses = '';
+
+                                    if (array_key_exists('view', $this->data['content_navigation']['views']) && $this->data['content_navigation']['views']['view']['href'] == $val['href']) {
+                                        $navClasses = 'active';
+                                    }
+                                    ?>
+
+                                    <li class="<?php echo $navClasses ?> main-nav-li"><?php echo $this->makeLink($key, $val); ?></li><?php
+                                endforeach;
+                                
+                            if ($wgMediaWikiBootstrapSkinDisplaySidebarNavigation) { ?>                
+                                </ul>              
+                            </li><?php
+                            }
+                    }
+                        break;   
+                                         
+                case 'SEARCHNAV':
+                    ?>
+                    <li>
+                        <form class="navbar-form navbar-right" action="<?php $this->text('wgScript') ?>" id="searchform">
+                            <input id="searchInput" class="form-control" type="search" accesskey="f" title="<?php $this->text('searchtitle'); ?>" placeholder="<?php $this->msg('search'); ?>" name="search" value="<?php echo htmlspecialchars($this->data['search']); ?>">
+                            <?php echo $this->makeSearchButton('fulltext', array('id' => 'mw-searchButton', 'class' => 'searchButton btn hidden')); ?>
+                        </form>
+                    </li>
+
+                    <?php
+                    break;
+            
+                
             endswitch;
         }
     }

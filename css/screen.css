@@ -1,0 +1,139 @@
+
+#footer .row{
+    margin: 0px;
+}
+
+/*
+* Image Thumbnail 
+*/
+
+.center {
+    text-align: center;
+}
+.center * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.thumbinner {
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC;
+    font-size: 94%;
+    overflow: hidden;
+    padding: 3px !important;
+    text-align: center;
+}
+
+html .thumbcaption {
+    border: medium none;
+    font-size: 94%;
+    line-height: 1.4em;
+    padding: 3px !important;
+}
+
+div.tleft, div.floatleft, table.floatleft {
+    clear: left;
+    float: left;
+}
+
+div.thumb {
+    background-color: rgba(0, 0, 0, 0);
+    margin-bottom: 0.5em;
+    width: auto;
+}
+
+div.tleft {
+    margin: 0.5em 1.4em 1.3em 0;
+}
+
+div.tright, div.floatright, table.floatright {
+    clear: right;
+    float: right;
+}
+div.tright {
+    margin: 0.5em 0 1.3em 1.4em;
+}
+
+#p-logo .logo_image{
+    max-width: 100% !important;
+}
+
+#p-logo a {
+    background: #fff;
+}
+
+#page-header ul{
+    margin-bottom: 0px;
+}
+
+.row{
+    margin-top: 0px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+    background: #eeeeee;
+}
+
+#catlinks{
+    padding: 0px 30px;
+}
+.table th, .table td{
+    text-align: center;
+}
+.mw-content-ltr .thumbcaption{
+    text-align: center;
+}
+h1#firstHeading {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+#other_language_link{
+    list-style: none;
+}
+
+.raw-table td{
+    text-align:left;
+    border:none;
+}
+
+#footer{
+    text-align: center;
+}
+.dl-horizontal dt{
+    width: 200px;
+}
+.dl-horizontal dd {
+    margin-left: 210px;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    #other_language_link{
+        margin: 0px;
+        text-align: right;
+        line-height: 1;
+        min-height: 20px;
+    }
+    hr{
+        margin: 10px 0px;
+    }
+    #innerbodycontent .main-content-section {
+        margin-top:0px;
+    }
+}
