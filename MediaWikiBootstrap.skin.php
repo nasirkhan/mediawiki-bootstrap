@@ -16,9 +16,9 @@ if (!defined('MEDIAWIKI')) {
  */
 class SkinMediaWikiBootstrap extends SkinTemplate {
 
-    var $skinname = 'mediawikibootstrap', 
+    var $skinname = 'mediawikibootstrap',
             $stylename = 'mediawikibootstrap',
-            $template = 'MediaWikiBootstrapTemplate', 
+            $template = 'MediaWikiBootstrapTemplate',
             $useHeadElement = true;
 
     /**
@@ -76,24 +76,64 @@ class SkinMediaWikiBootstrap extends SkinTemplate {
  * Template class of the MediaWikiBootstrap Skin
  * @ingroup Skins
  */
-class MediaWikiBootstrapTemplate extends BaseTemplate{
+class MediaWikiBootstrapTemplate extends BaseTemplate {
+
     /**
      * Outputs the entire contents of the page
      */
     public function execute() {
         // Suppress warnings to prevent notices about missing indexes in $this->data
         wfSuppressWarnings();
-        
-        $this->html( 'headelement' ); ?>
-        
+
+        $this->html('headelement');
+        ?>
+        <div class="container">
+            <!-- Static navbar -->
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Project name</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="./">Default</a></li>
+                            <li><a href="../navbar-static-top/">Static top</a></li>
+                            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+            </div>
+        </div>
+
         // [...]
-        
+
         <?php $this->printTrail(); ?>
-    </body>
-    </html><?php
-    wfRestoreWarnings();
+        </body>
+        </html><?php
+        wfRestoreWarnings();
+    }
+
 }
-}
-
-
-
