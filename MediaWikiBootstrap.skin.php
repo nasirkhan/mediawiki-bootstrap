@@ -83,16 +83,16 @@ class MediaWikiBootstrapTemplate extends BaseTemplate{
     public function execute() {
         // Suppress warnings to prevent notices about missing indexes in $this->data
         wfSuppressWarnings();
- 
+        
         $this->html( 'headelement' ); ?>
- 
-// [...]
- 
-<?php $this->printTrail(); ?>
-</body>
-</html><?php
-        wfRestoreWarnings();
-    }
+        
+        // [...]
+        
+        <?php $this->printTrail(); ?>
+    </body>
+    </html><?php
+    wfRestoreWarnings();
+}
 }
 
 

@@ -37,11 +37,11 @@ $wgResourceModules['skins.mediawikibootstrap'] = array(
 );
 
 
-# Default options to customize skin
-$wgStrappingSkinLogoLocation = 'bodycontent';
-$wgStrappingSkinLoginLocation = 'footer';
-$wgStrappingSkinAnonNavbar = false;
-$wgStrappingSkinUseStandardLayout = false;
-$wgStrappingSkinDisplaySidebarNavigation = false;
-# Show print/export in navbar by default
-$wgStrappingSkinSidebarItemsInNavbar = array( 'coll-print_export' );
+// # Default options to customize skin
+// $wgStrappingSkinLogoLocation = 'bodycontent';
+// $wgStrappingSkinLoginLocation = 'footer';
+// $wgStrappingSkinAnonNavbar = false;
+// $wgStrappingSkinUseStandardLayout = false;
+// $wgStrappingSkinDisplaySidebarNavigation = false;
+// # Show print/export in navbar by default
+// $wgStrappingSkinSidebarItemsInNavbar = array( 'coll-print_export' );
