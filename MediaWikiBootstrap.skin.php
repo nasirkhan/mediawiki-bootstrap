@@ -224,10 +224,11 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         </div>
                     </div>
                     
-                    <div id="main-nav">
+                    <div class="clearfix"></div>
+                    <div id="main-nav-area" class="col-xm-12 col-sm-12 col-md-12 col-lg-12" >
                         <!--navigation menu-->
                          
-                        <nav class="navbar navbar-default" role="navigation">
+                        <nav id="main-navbar" class="navbar navbar-default main-navbar" role="navigation">
                             <div class="container-fluid">
                                 <!-- Brand and toggle get grouped for better mobile display -->
                                 <div class="navbar-header">
@@ -237,11 +238,10 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a class="navbar-brand visible-phone" href="#"><?php $this->html('sitename'); ?></a>
+                                    <a class="navbar-brand visible-xs" href="#"><?php $this->html('sitename'); ?></a>
                                 </div>
 
-                                <!-- Collect the nav links, forms, and other content for toggling -->
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <div class="collapse navbar-collapse" id="main-nav">
                                     
                                     <ul class="nav navbar-nav navbar-right">
                                         <?php
@@ -261,9 +261,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
                         </nav>
-
-                        
-                        
                     </div>
                 </div>
             </section> 
@@ -444,8 +441,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         $toolTip = Xml::expandAttributes(Linker::tooltipAndAccesskeyAttribs('p-logo'));
         ?>
         <div id="p-logo" class="text-center">
-            <a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href']) ?>" <?php echo Xml::expandAttributes(Linker::tooltipAndAccesskeyAttribs('p-logo')) ?>><img class="logo_image" src="<?php $this->text('logopath'); ?>" alt="<?php $this->html('sitename'); ?>"></a>
-        <div>
+            <a href="<?php echo htmlspecialchars($this->data['nav_urls']['mainpage']['href']) ?>" <?php echo Xml::expandAttributes(Linker::tooltipAndAccesskeyAttribs('p-logo')) ?>><img class="logo_image" src="<?php $this->text('logopath'); ?>" alt="<?php $this->html('sitename'); ?>" /></a>
+        </div>
         <?php
     }
     
