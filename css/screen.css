@@ -121,6 +121,12 @@ hr{
     margin-bottom: 10px;
 }
 
+
+#main-navbar{
+    margin-bottom: 5px;
+}
+
+
 /* Large desktop */
 @media (min-width: 1200px) {
     #wrapper{

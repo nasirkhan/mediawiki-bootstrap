@@ -145,6 +145,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
             <!-- start navbar -->
             
             <?php if ($wgGroupPermissions['*']['edit'] || $wgMediaWikiBootstrapSkinAnonNavbar || $this->data['loggedin']) : ?>
+            
             <div class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
