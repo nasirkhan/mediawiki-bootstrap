@@ -290,7 +290,17 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 <div id="bodyContent" class="row">
                     <?php if ($this->data['newtalk']): ?>
                         <!-- newtalk -->
-                        <div class="usermessage"><?php $this->html('newtalk') ?></div>
+                        
+                        <div class="usermessage col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                        
+                            <div class="alert alert-success">
+                                <i class="fa fa-comments"></i>
+                                <?php $this->html('newtalk') ?>
+                            </div>
+                        
+                        </div>
+                            
+                        
                         <!-- /newtalk -->
                     <?php endif; ?>
                     <?php if ($this->data['showjumplinks']): ?>
