@@ -275,8 +275,13 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 </div>
                 <?php if ($this->data['sitenotice']): ?>
                     <!-- sitenotice -->
-                    <div class="row">
-                        <div id="siteNotice"><?php $this->html('sitenotice') ?></div>
+                    <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                        
+                        <div id="siteNotice" class="alert alert-info">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <?php $this->html('sitenotice') ?> 
+                        </div>
+                        
                     </div>
                     <!-- /sitenotice -->
                 <?php endif; ?>
