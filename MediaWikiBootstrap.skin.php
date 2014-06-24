@@ -741,7 +741,19 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
                     <?php
                     break;
-            
+                                
+                case 'LANGUAGES':
+                    $theMsg = 'otherlanguages';
+                    $theData = $this->data['language_urls'];
+                    $options = "";
+                    ?>
+                    <?php foreach ($theData as $key => $val) : ?>
+                        <li class="<?php echo $navClasses ?>">
+                            <?php echo $this->makeLink($key, $val, $options); ?>
+                        </li>
+                    <?php endforeach; ?>
+                    <?php
+                    break;
                 
             endswitch;
         }
