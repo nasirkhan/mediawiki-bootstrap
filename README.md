@@ -31,3 +31,10 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
 4. Edit the wiki page `MediaWiki:Sidebar` of your mediawiki installation to change the navigation links .
 
 5. Customize the other settings and modify the style based on your need. 
+
+
+## Example 
+This mediawiki skin is used in the following encyclopedia sites,
+* http://en.banglapedia.org
+* http://bn.banglapedia.org
+
