@@ -149,7 +149,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
             <div class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-top">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -157,7 +157,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         </button>
                         <a class="navbar-brand visible-xs" href="#"><?php $this->html('sitename'); ?></a>
                     </div>
-                    <div class="navbar-collapse collapse">
+                    <div class="navbar-collapse collapse" id="main-nav-top">
                         <?php
                         # Page options & menu
                         $this->renderNavigation(array('PAGE-OPTIONS'));
@@ -226,14 +226,15 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </div>
                     
                     <div class="clearfix"></div>
+                    
+
                     <div id="main-nav-area" class="col-xm-12 col-sm-12 col-md-12 col-lg-12" >
-                        <!--navigation menu-->
-                         
+                        <!--navigation menu-->                         
                         <nav id="main-navbar" class="navbar navbar-default main-navbar" role="navigation">
                             <div class="container-fluid">
                                 <!-- Brand and toggle get grouped for better mobile display -->
                                 <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
                                         <span class="sr-only">Toggle navigation</span>
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
@@ -262,6 +263,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
                         </nav>
+                        
                     </div>
                 </div>
             </section> 
@@ -303,6 +305,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         
                         <!-- /newtalk -->
                     <?php endif; ?>
+                        
+                        
                     <?php if ($this->data['showjumplinks']): ?>
                         <!-- jumpto -->
                         <div id="jump-to-nav" class="mw-jump">
@@ -359,7 +363,11 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     <?php endif; ?>
                     <?php if ($this->data['dataAfterContent']): ?>
                         <!-- dataAfterContent -->
-                        <?php $this->html('dataAfterContent'); ?>
+                        <div class="row">
+                            <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                                <?php $this->html('dataAfterContent'); ?>
+                            </div>
+                        </div>                        
                         <!-- /dataAfterContent -->
                     <?php endif; ?>
                     <div class="visualClear"></div>
@@ -376,14 +384,27 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
             $footerfile = dirname(__FILE__) . '/footer.php';
 
             if (file_exists($footerfile)) : ?>
-                <div id="footer" class="footer row custom-footer">
-                    <?php include( $footerfile ); ?>
-                </div> <?php
+                <div id="footer" class="text-center footer"<?php $this->html('userlangattributes') ?>>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
+                            <?php include( $footerfile ); ?>
+                            <ul class="list-inline">
+                                <li id="pt-login">
+                                    <?php if (!$this->data['loggedin']): ?>
+                                    <a href="#"><?php echo $personalTemp[$loginType]['links'][0]['text']; ?></a>
+                                    <?php endif; ?>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><?php
             else : ?>
                 <div id="footer" class="footer"<?php $this->html('userlangattributes') ?>>
                     <hr>
                     <div class="row">
-                        <?php
+                        <?php 
+                        
                         $footerLinks = $this->getFooterLinks();
 
                         if (is_array($footerLinks)) {
