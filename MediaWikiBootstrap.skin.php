@@ -409,15 +409,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 <div id="footer" class="footer"<?php $this->html('userlangattributes') ?>>
                     <hr>
                     <div class="row">
-                    <?php
-                if ( $this->data['printfooter'] ) {
-                    ?>
-                    <div class="printfooter">
-                        <?php $this->html( 'printfooter' ); ?>
-                    </div>
-                <?php
-                }
-                ?>
                         <?php 
                         
                         $footerLinks = $this->getFooterLinks();
