@@ -16,10 +16,10 @@ if (!defined('MEDIAWIKI')) {
  */
 class SkinMediaWikiBootstrap extends SkinTemplate {
 
-    var $skinname = 'mediawikibootstrap',
-            $stylename = 'mediawikibootstrap',
-            $template = 'MediaWikiBootstrapTemplate',
-            $useHeadElement = true;
+    var $skinname       = 'mediawikibootstrap',
+        $stylename      = 'mediawikibootstrap',
+        $template       = 'MediaWikiBootstrapTemplate',
+        $useHeadElement = true;
 
     /**
      * Initializes output page and sets up skin-specific parameters
@@ -277,14 +277,18 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 </div>
                 <?php if ($this->data['sitenotice']): ?>
                     <!-- sitenotice -->
-                    <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                    
+                    <div class="row">
+                        <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
                         
-                        <div id="siteNotice" class="alert alert-info">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <?php $this->html('sitenotice') ?> 
+                            <div id="siteNotice" class="alert alert-info">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <?php $this->html('sitenotice') ?> 
+                            </div>
+                            
                         </div>
-                        
                     </div>
+                    
                     <!-- /sitenotice -->
                 <?php endif; ?>
 
