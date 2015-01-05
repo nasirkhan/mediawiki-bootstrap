@@ -7,15 +7,21 @@
  * @author Nasir Khan Saikat http://nasirkhn.com
  */
 
-if( !defined( 'MEDIAWIKI' ) ) die( "This is an extension to the MediaWiki package and cannot be run standalone." );
- 
+if ( !defined( 'MEDIAWIKI' ) ) {
+        die( 'This is an extension to the MediaWiki package and cannot be run standalone.' );
+}
+
 $wgExtensionCredits['skin'][] = array(
-        'path'              => __FILE__,
-        'name'              => 'MediaWikiBootstrap',
-        'url'               => "https://github.com/nasirkhan/mediawiki-bootstrap",
-        'author'            => 'Nasir Khan Saikat',
-        'descriptionmsg'    => 'mediawikibootstrap-desc',
+        'path' => __FILE__,
+        'name' => 'MediaWikiBootstrap', 
+        'namemsg' => 'skinname-mediawikibootstrap', 
+        'version' => '1.1.0',
+        'url' => 'https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap',
+        'author' => '[https://mediawiki.org/wiki/User:nasir8891 Nasir Khan Saikat]',
+        'descriptionmsg' => 'mediawikibootstrap-desc',
+        'license' => 'GPL-2.0+',
 );
+
 
 $wgValidSkinNames['mediawikibootstrap']                 = 'MediaWikiBootstrap';
 $wgAutoloadClasses['SkinMediaWikiBootstrap']            = dirname(__FILE__).'/MediaWikiBootstrap.skin.php';
@@ -23,17 +29,17 @@ $wgExtensionMessagesFiles['SkinMediaWikiBootstrap']     = dirname(__FILE__).'/Me
  
 $wgResourceModules['skins.mediawikibootstrap'] = array(
         'styles' => array(
-                'MediaWikiBootstrap/css/bootstrap.min.css' => array( 'media' => 'screen' ),
-                'MediaWikiBootstrap/css/font-awesome.min.css' => array( 'media' => 'screen' ),
-                'MediaWikiBootstrap/css/screen.css' => array( 'media' => 'screen' ),
-                'MediaWikiBootstrap/css/print.css' => array( 'media' => 'print' ),
+                'MediaWikiBootstrap/css/bootstrap.min.css'      => array( 'media' => 'screen' ),
+                'MediaWikiBootstrap/css/font-awesome.min.css'   => array( 'media' => 'screen' ),
+                'MediaWikiBootstrap/css/screen.css'             => array( 'media' => 'screen' ),
+                'MediaWikiBootstrap/css/print.css'              => array( 'media' => 'print' ),
 	),
 	'scripts' => array(
 		'MediaWikiBootstrap/js/bootstrap.min.js',
 		'MediaWikiBootstrap/js/mediawikibootstrap.js',
 	),
-        'remoteBasePath' => &$GLOBALS['wgStylePath'],
-        'localBasePath' => &$GLOBALS['wgStyleDirectory'],
+        'remoteBasePath'        => &$GLOBALS['wgStylePath'],
+        'localBasePath'         => &$GLOBALS['wgStyleDirectory'],
 );
 
 
