@@ -275,9 +275,10 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 <div class="row">
                     <div id="mw-js-message" class="col-xm-12 col-sm-12 col-md-12 col-lg-12" style="display:none;"<?php $this->html('userlangattributes') ?>></div>
                 </div>
+
                 <?php if ($this->data['sitenotice']): ?>
                     <!-- sitenotice -->
-                    
+
                     <div class="row">
                         <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
                         
@@ -314,7 +315,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     <?php if ($this->data['showjumplinks']): ?>
                         <!-- jumpto -->
                         <div id="jump-to-nav" class="mw-jump">
-                            <?php $this->msg('jumpto') ?> <a href="#mw-head"><?php $this->msg('jumptonavigation') ?></a>,
+                            <?php $this->msg('jumpto') ?> 
+                            <a href="#mw-head"><?php $this->msg('jumptonavigation') ?></a>,
                             <a href="#p-search"><?php $this->msg('jumptosearch') ?></a>
                         </div>
                         <!-- /jumpto -->
@@ -407,6 +409,15 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 <div id="footer" class="footer"<?php $this->html('userlangattributes') ?>>
                     <hr>
                     <div class="row">
+                    <?php
+                if ( $this->data['printfooter'] ) {
+                    ?>
+                    <div class="printfooter">
+                        <?php $this->html( 'printfooter' ); ?>
+                    </div>
+                <?php
+                }
+                ?>
                         <?php 
                         
                         $footerLinks = $this->getFooterLinks();
