@@ -15,7 +15,7 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
 2. Clone the repository form the git repo:
 
    ```
-   git clone https://github.com/nasirkhan/mediawiki-bootstrap strapping
+   git clone https://github.com/nasirkhan/mediawiki-bootstrap MediaWikiBootstrap
    ```
 
 3. Update the `LocalSettings.php` to install and enable the skin: 
