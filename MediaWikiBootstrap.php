@@ -12,20 +12,21 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 $wgExtensionCredits['skin'][] = array(
-        'path' => __FILE__,
-        'name' => 'MediaWikiBootstrap', 
-        'namemsg' => 'skinname-mediawikibootstrap', 
-        'version' => '1.1.0',
-        'url' => 'https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap',
-        'author' => '[https://mediawiki.org/wiki/User:nasir8891 Nasir Khan Saikat]',
+        'path'          => __FILE__,
+        'name'          => 'MediaWikiBootstrap', 
+        'namemsg'       => 'skinname-mediawikibootstrap', 
+        'version'       => '1.1.0',
+        'url'           => 'https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap',
+        'author'        => '[https://mediawiki.org/wiki/User:nasir8891 Nasir Khan Saikat]',
         'descriptionmsg' => 'mediawikibootstrap-desc',
-        'license' => 'GPL-2.0+',
+        'license'       => 'GPL-2.0+',
 );
 
 
-$wgValidSkinNames['mediawikibootstrap']                 = 'MediaWikiBootstrap';
-$wgAutoloadClasses['SkinMediaWikiBootstrap']            = dirname(__FILE__).'/MediaWikiBootstrap.skin.php';
-$wgExtensionMessagesFiles['SkinMediaWikiBootstrap']     = dirname(__FILE__).'/MediaWikiBootstrap.i18n.php';
+$wgValidSkinNames['mediawikibootstrap']         = 'MediaWikiBootstrap';
+$wgAutoloadClasses['SkinMediaWikiBootstrap']    = __DIR__ . '/MediaWikiBootstrap.skin.php';
+$wgMessagesDirs['MediaWikiBootstrap']           = __DIR__ . '/i18n';
+
  
 $wgResourceModules['skins.mediawikibootstrap'] = array(
         'styles' => array(
