@@ -17,9 +17,9 @@ $wgExtensionCredits['skin'][] = array(
         'descriptionmsg'    => 'mediawikibootstrap-desc',
 );
 
-$wgValidSkinNames['mediawikibootstrap'] = 'MediaWikiBootstrap';
-$wgAutoloadClasses['SkinMediaWikiBootstrap'] = dirname(__FILE__).'/MediaWikiBootstrap.skin.php';
-$wgExtensionMessagesFiles['SkinMediaWikiBootstrap'] = dirname(__FILE__).'/MediaWikiBootstrap.i18n.php';
+$wgValidSkinNames['mediawikibootstrap']                 = 'MediaWikiBootstrap';
+$wgAutoloadClasses['SkinMediaWikiBootstrap']            = dirname(__FILE__).'/MediaWikiBootstrap.skin.php';
+$wgExtensionMessagesFiles['SkinMediaWikiBootstrap']     = dirname(__FILE__).'/MediaWikiBootstrap.i18n.php';
  
 $wgResourceModules['skins.mediawikibootstrap'] = array(
         'styles' => array(
