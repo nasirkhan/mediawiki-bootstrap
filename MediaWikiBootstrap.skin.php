@@ -87,13 +87,15 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         // Build additional attributes for navigation urls
         $nav = $this->data['content_navigation'];
 
-        if ($wgVectorUseIconWatch) {
-            $mode = $this->getSkin()->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
-            if (isset($nav['actions'][$mode])) {
+        if ( $wgVectorUseIconWatch ) {
+            $mode = $this->getSkin()->getUser()->isWatched( $this->getSkin()->getRelevantTitle() )
+                    ? 'unwatch'
+                    : 'watch';
+            if ( isset( $nav['actions'][$mode] ) ) {
                 $nav['views'][$mode] = $nav['actions'][$mode];
-                $nav['views'][$mode]['class'] = rtrim('icon ' . $nav['views'][$mode]['class'], ' ');
+                $nav['views'][$mode]['class'] = rtrim( 'icon ' . $nav['views'][$mode]['class'], ' ' );
                 $nav['views'][$mode]['primary'] = true;
-                unset($nav['actions'][$mode]);
+                unset( $nav['actions'][$mode] );
             }
         }
 
