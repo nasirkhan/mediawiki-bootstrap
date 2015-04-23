@@ -16,10 +16,10 @@ if (!defined('MEDIAWIKI')) {
  */
 class SkinMediaWikiBootstrap extends SkinTemplate {
 
-    var $skinname       = 'mediawikibootstrap',
-        $stylename      = 'mediawikibootstrap',
-        $template       = 'MediaWikiBootstrapTemplate',
-        $useHeadElement = true;
+    public $skinname = 'mediawikibootstrap';
+    public $stylename = 'mediawikibootstrap';
+    public $template = 'MediaWikiBootstrapTemplate';
+    public $useHeadElement = true;
 
     /**
      * Initializes output page and sets up skin-specific parameters
@@ -44,30 +44,15 @@ class SkinMediaWikiBootstrap extends SkinTemplate {
     }
 
     /**
-     * Load skin and user CSS files in the correct order
-     * fixes bug 22916
-     * @param $out OutputPage object
+     * Loads skin and user CSS files.
+     * @param OutputPage $out
      */
-    function setupSkinUserCss(OutputPage $out) {
-        global $wgResourceModules;
-
-        parent::setupSkinUserCss($out);
-
-        // FIXME: This is the "proper" way to include CSS
-        // however, MediaWiki's ResourceLoader messes up media queries
-        // See: https://bugzilla.wikimedia.org/show_bug.cgi?id=38586
-        // &: http://stackoverflow.com/questions/11593312/do-media-queries-work-in-mediawiki
-        //
-        //$out->addModuleStyles( 'skins.mediawikibootstrap' );
-        // Instead, we're going to manually add each, 
-        // so we can use media queries
-        foreach ($wgResourceModules['skins.mediawikibootstrap']['styles'] as $cssfile => $cssvals) {
-            if (isset($cssvals)) {
-                $out->addStyle($cssfile, $cssvals['media']);
-            } else {
-                $out->addStyle($cssfile);
-            }
-        }
+   function setupSkinUserCss( OutputPage $out ) {
+        parent::setupSkinUserCss( $out );
+        
+        $styles = array( 'mediawiki.skinning.interface', 'skins.mediawikibootstrap' );
+        wfRunHooks( 'SkinMediawikibootstrapStyleModules', array( $this, &$styles ) );
+        $out->addModuleStyles( $styles );
     }
 
 }
