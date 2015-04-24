@@ -130,6 +130,10 @@ hr{
     margin-top: 0px;
 }
 
+legend{
+    padding: 10px 0px 10px 0px;
+    margin-bottom:10px;
+}
 
 /* Large desktop */
 @media (min-width: 1200px) {
