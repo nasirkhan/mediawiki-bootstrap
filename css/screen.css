@@ -126,6 +126,10 @@ hr{
     margin-bottom: 5px;
 }
 
+.mw-specialpages-table{
+    margin-top: 0px;
+}
+
 
 /* Large desktop */
 @media (min-width: 1200px) {
@@ -185,3 +189,4 @@ hr{
         margin-top:0px;
     }
 }
+
