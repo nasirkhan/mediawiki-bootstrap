@@ -135,6 +135,10 @@ legend{
     margin-bottom:10px;
 }
 
+td.mw-label{
+    text-align: left;
+}
+
 /* Large desktop */
 @media (min-width: 1200px) {
     #wrapper{
