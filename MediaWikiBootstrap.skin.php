@@ -16,10 +16,10 @@ if (!defined('MEDIAWIKI')) {
  */
 class SkinMediaWikiBootstrap extends SkinTemplate {
 
-    public $skinname = 'mediawikibootstrap';
-    public $stylename = 'mediawikibootstrap';
-    public $template = 'MediaWikiBootstrapTemplate';
-    public $useHeadElement = true;
+    public $skinname        = 'mediawikibootstrap';
+    public $stylename       = 'mediawikibootstrap';
+    public $template        = 'MediaWikiBootstrapTemplate';
+    public $useHeadElement  = true;
 
     /**
      * Initializes output page and sets up skin-specific parameters
