@@ -17,8 +17,8 @@ $wgExtensionCredits['skin'][] = array(
         'namemsg'       => 'skinname-mediawikibootstrap', 
         'version'       => '1.1.0',
         'url'           => 'https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap',
-        'author'        => '[https://mediawiki.org/wiki/User:nasir8891 Nasir Khan Saikat]',
-        'descriptionmsg' => 'mediawikibootstrap-desc',
+        'author'        => '[https://mediawiki.org/wiki/User:nasirkhan Nasir Khan Saikat]',
+        'descriptionmsg'=> 'mediawikibootstrap-desc',
         'license'       => 'GPL-2.0+',
 );
 
