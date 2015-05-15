@@ -402,6 +402,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         $footerLinks = $this->getFooterLinks();
 
                         if (is_array($footerLinks)) {
+                            
                             foreach ($footerLinks as $category => $links): ?>
 
                                 <ul id="footer-<?php echo $category ?>" class="list-inline text-center">
