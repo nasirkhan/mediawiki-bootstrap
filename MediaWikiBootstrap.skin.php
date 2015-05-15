@@ -128,7 +128,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         // Output HTML Page
         $this->html('headelement');
         ?>
-        <div id="globalWrapper" class="container">
+        <div id="wrapper" class="container">
             <!-- start navbar -->
             
             <?php if ($wgGroupPermissions['*']['edit'] || $wgMediaWikiBootstrapSkinAnonNavbar || $this->data['loggedin']) : ?>
@@ -199,9 +199,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
             } else {
                 $userStateClass += " not-editable";
             }
-            ?>
-            
-            <div id="wrapper">
+            ?>            
             
             <section id="header">
                 <div id="page-header" class="row">
@@ -369,15 +367,18 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     <!-- /debughtml -->
                 </div> 
             </section>
-            <!-- /content -->
+            <!-- /content -->         
             
-            </div>
-            <?php
+        </div>
+        <!-- /#wrapper -->
+        
+        
+        <?php
             /* Support a custom footer, or use MediaWiki's default, if footer.php does not exist. */
             $footerfile = dirname(__FILE__) . '/footer.php';
 
             if (file_exists($footerfile)) : ?>
-                <div id="footer" class="text-center footer"<?php $this->html('userlangattributes') ?>>
+                <div id="footer" class="text-center footer container"<?php $this->html('userlangattributes') ?>>
                     <hr>
                     <div class="row">
                         <div class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
@@ -393,7 +394,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </div>
                 </div><?php
             else : ?>
-                <div id="footer" class="footer"<?php $this->html('userlangattributes') ?>>
+                <div id="footer" class="footer container"<?php $this->html('userlangattributes') ?>>
                     <hr>
                     <div class="row">
                         <?php 
@@ -450,8 +451,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
             <?php endif; ?>
 
         <?php $this->printTrail(); ?>
-            
-        </div><!-- /#globalWrapper -->
 
         </body>
         </html><?php
