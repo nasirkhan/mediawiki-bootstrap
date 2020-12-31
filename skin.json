@@ -1,0 +1,79 @@
+{
+  "name": "MediaWikiBootstrap",
+  "namemsg": "skinname-mediawikibootstrap",
+  "descriptionmsg": "mediawikibootstrap-desc",
+  "version": "1.1.0",
+  "url": "https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap",
+  "author": [
+    "[https://mediawiki.org/wiki/User:nasirkhan Nasir Khan Saikat]"
+  ],
+  "type": "skin",
+  "requires": {
+    "MediaWiki": ">= 1.35.0"
+  },
+  "manifest_version": 2,
+  "ValidSkinNames": {
+    "mediawikibootstrap": {
+      "class": "SkinMediaWikiBootstrap",
+      "args": [
+        {
+          "name": "mediawikibootstrap",
+          "responsive": true,
+          "styles": [
+            "skins.mediawikibootstrap"
+          ],
+          "scripts": [
+            "skins.mediawikibootstrap.js"
+          ]
+        }
+      ]
+    }
+  },
+  "AutoloadClasses": {
+    "SkinMediaWikiBootstrap": "MediaWikiBootstrap.skin.php"
+  },
+  "MessagesDirs": {
+    "bootstrap": [
+      "i18n"
+    ]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "",
+    "remoteSkinPath": "bootstrap"
+  },
+  "config": {
+    "MediaWikiBootstrapSkinLoginLocation": {
+      "value": "footer"
+    },
+    "MediaWikiBootstrapSkinAnonNavbar": {
+      "value": false
+    },
+    "MediaWikiBootstrapSkinUseStandardLayout": {
+      "value": false
+    },
+    "MediaWikiBootstrapSkinDisplaySidebarNavigation": {
+      "value": false
+    },
+    "MediaWikiBootstrapSkinSidebarItemsInNavbar": {
+      "value": [ "coll-print_export" ]
+    }
+  },
+  "ResourceModules": {
+    "skins.mediawikibootstrap": {
+      "class": "ResourceLoaderSkinModule",
+      "features": [ "elements", "interface", "content", "logo", "legacy" ],
+      "styles": {
+        "css/bootstrap.min.css": { "media": "screen" },
+        "css/font-awesome.min.css": { "media": "screen" },
+        "css/screen.css": { "media": "screen" },
+        "css/print.css": { "media": "print" }
+      }
+    },
+    "skins.mediawikibootstrap.js": {
+      "scripts": [
+        "js/bootstrap.min.js",
+        "js/mediawikibootstrap.js"
+      ]
+    }
+  }
+}

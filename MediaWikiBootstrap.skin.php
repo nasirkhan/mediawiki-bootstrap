@@ -1,4 +1,7 @@
 <?php
+use MediaWiki\Hook;
+use Wikimedia\AtEase\AtEase;
+
 /**
  * MediaWikiBootstrap is a simple Mediawiki Skin build on Bootstrap 3.
  *
@@ -39,22 +42,14 @@ class SkinMediaWikiBootstrap extends SkinTemplate {
                 "/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
         );
 
-        $out->addHeadItem('responsive', '<meta name="viewport" content="width=device-width, initial-scale=1.0">');
-        $out->addModuleScripts('skins.mediawikibootstrap');
-    }
-
-    /**
-     * Loads skin and user CSS files.
-     * @param OutputPage $out
-     */
-   function setupSkinUserCss( OutputPage $out ) {
-        parent::setupSkinUserCss( $out );
-        
-        $styles = array( 'mediawiki.skinning.interface', 'skins.mediawikibootstrap' );
-        wfRunHooks( 'SkinMediawikibootstrapStyleModules', array( $this, &$styles ) );
+        $styles = [];
+        Hooks::run(
+            'SkinMediawikibootstrapStyleModules',
+            [ $this, &$styles ],
+            '1.35: Use BeforePageDisplay hook'
+        );
         $out->addModuleStyles( $styles );
     }
-
 }
 
 /**
@@ -76,8 +71,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
 
         // Suppress warnings to prevent notices about missing indexes in $this->data
-        wfSuppressWarnings();
-        
+        AtEase::suppressWarnings();
+
         // search box locations 
         if (!$wgSearchPlacement) {
             $wgSearchPlacement['top-nav'] = true;
@@ -107,7 +102,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 }
 
                 $xmlID = isset($link['id']) ? $link['id'] : 'ca-' . $xmlID;
-                $nav[$section][$key]['attributes'] = ' id="' . Sanitizer::escapeId($xmlID) . '"';
+                $nav[$section][$key]['attributes'] = ' id="' . Sanitizer::escapeIdForAttribute($xmlID) . '"';
                 if ($link['class']) {
                     $nav[$section][$key]['attributes'] .=
                             ' class="' . htmlspecialchars($link['class']) . '"';
@@ -455,10 +450,10 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
         </body>
         </html><?php
-        wfRestoreWarnings();
+        AtEase::restoreWarnings();
     }
-    
-    
+
+
     /**
      * Render logo
      */
