@@ -21,8 +21,8 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
 3. Update the `LocalSettings.php` to install and enable the skin: 
 
    ```php
-    require_once( "$IP/skins/MediaWikiBootstrap/MediaWikiBootstrap.php" );
-    $wgDefaultSkin = "mediawikibootstrap";
+   wfLoadSkin( 'MediaWikiBootstrap' );
+   wfLoadExtension( 'MediaWikiBootstrap', "$IP/skins/MediaWikiBootstrap/skin.json" );
     ```
    
    (Please remove or comment out other mentions of
