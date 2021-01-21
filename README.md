@@ -36,3 +36,14 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
 This mediawiki skin is used in the following encyclopedia sites,
 * http://en.banglapedia.org
 * http://bn.banglapedia.org
+
+## Screenshot
+
+### Banglapedia (English)/ বাংলাপিডিয়া (ইংরেজি)
+
+![Screenshot English Banglapedia](https://user-images.githubusercontent.com/396987/105332985-6a1cea00-5bff-11eb-9a6e-1cb771fca9f7.png)
+
+### Banglapedia (Bangla)/ বাংলাপিডিয়া (বাংলা)
+
+![Screenshot Bangla Banglapedia](https://user-images.githubusercontent.com/396987/105333071-7ef97d80-5bff-11eb-9896-cc7639691343.png)
+
