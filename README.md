@@ -6,7 +6,7 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
 
 ## Getting Started
 
-1. Go to the *"skins"* subdirectory of your MediaWiki installation:
+1. Go to the `skins` subdirectory of your MediaWiki installation:
 
    ```
    cd skins
@@ -18,26 +18,29 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
    git clone https://github.com/nasirkhan/mediawiki-bootstrap MediaWikiBootstrap
    ```
 
-3. Update the `LocalSettings.php` to install and enable the skin:
+3. To install the skin add the following line to your `LocalSettings.php`:
 
    ```php
    wfLoadSkin( 'MediaWikiBootstrap' );
     ```
-
-   (Please remove or comment out other mentions of
-   `$wgDefaultSkin`.)
+    
+    Now update the details skin to MediaWikiBoottrap by changing the value to `$wgDefaultSkin`
+    
+    ```php
+    $wgDefaultSkin = "mediawikibootstrap";
+    ```
 
 4. Edit the wiki page `MediaWiki:Sidebar` of your mediawiki installation to change the navigation links .
 
 5. Customize the other settings and modify the style based on your need.
 
 
-## Example
+## Examples
 This mediawiki skin is used in the following encyclopedia sites,
 * http://en.banglapedia.org
 * http://bn.banglapedia.org
 
-## Screenshot
+## Screenshots
 
 ### Banglapedia (English)/ বাংলাপিডিয়া (ইংরেজি)
 
