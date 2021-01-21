@@ -41,6 +41,7 @@ class SkinMediaWikiBootstrap extends SkinTemplate {
                 htmlspecialchars($wgLocalStylePath) .
                 "/{$this->stylename}/csshover{$min}.htc\")}</style><![endif]-->"
         );
+        $out->addHeadItem('viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">');
 
         $styles = [];
         Hooks::run(
@@ -65,7 +66,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         global $wgGroupPermissions;
         global $wgVectorUseIconWatch;
         global $wgSearchPlacement;
-        global $wgMediaWikiBootstrapSkinLoginLocation;        
+        global $wgMediaWikiBootstrapSkinLoginLocation;
         global $wgMediaWikiBootstrapSkinAnonNavbar;
         global $wgMediaWikiBootstrapSkinUseStandardLayout;
 
@@ -73,12 +74,12 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         // Suppress warnings to prevent notices about missing indexes in $this->data
         AtEase::suppressWarnings();
 
-        // search box locations 
+        // search box locations
         if (!$wgSearchPlacement) {
             $wgSearchPlacement['top-nav'] = true;
             $wgSearchPlacement['nav'] = true;
         }
-        
+
         // Build additional attributes for navigation urls
         $nav = $this->data['content_navigation'];
 
@@ -125,9 +126,9 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         ?>
         <div id="wrapper" class="container">
             <!-- start navbar -->
-            
+
             <?php if ($wgGroupPermissions['*']['edit'] || $wgMediaWikiBootstrapSkinAnonNavbar || $this->data['loggedin']) : ?>
-            
+
             <div class="navbar navbar-default" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -162,10 +163,10 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         if (!isset($portals['TOOLBOX'])) {
                             $this->renderNavigation(array('TOOLBOX'));
                         }
-                        
+
                         # Personal menu (at the right)
                         $this->renderNavigation(array('PERSONAL'));
-                        
+
                         # Search box (at the right)
                         if ($wgSearchPlacement['top-nav']) {
                             $this->renderNavigation(array('TOP-NAV-SEARCH'));
@@ -176,10 +177,10 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 </div><!--/.container-fluid -->
             </div> <!-- /navbar -->
             <?php endif; ?>
-            
+
             <div id="mw-page-base" class="noprint"></div>
             <div id="mw-head-base" class="noprint"></div>
-            
+
             <?php
             if ($this->data['loggedin']) {
                 $userStateClass = "user-loggedin";
@@ -194,22 +195,22 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
             } else {
                 $userStateClass += " not-editable";
             }
-            ?>            
-            
+            ?>
+
             <section id="header">
                 <div id="page-header" class="row">
-                    <!--site logo--> 
+                    <!--site logo-->
                     <div id="logo" class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="<?php echo $this->data['loggedin'] ? 'signed-in' : 'signed-out'; ?>">
                             <?php $this->renderLogo(); ?>
                         </div>
                     </div>
-                    
+
                     <div class="clearfix"></div>
-                    
+
 
                     <div id="main-nav-area" class="col-xm-12 col-sm-12 col-md-12 col-lg-12" >
-                        <!--navigation menu-->                         
+                        <!--navigation menu-->
                         <nav id="main-navbar" class="navbar navbar-default main-navbar" role="navigation">
                             <div class="container-fluid">
                                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -224,10 +225,36 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 </div>
 
                                 <div class="collapse navbar-collapse" id="main-nav">
-                                    
+
                                     <ul class="nav navbar-nav navbar-right">
                                         <?php
-                                        $this->renderNavigation(array('SIDEBAR'));
+                                        foreach ( $this->getSidebar() as $boxName => $box ) { ?>
+                                            <!-- <div id="<?php echo Sanitizer::escapeId( $box['id'] ) ?>"<?php echo Linker::tooltip( $box['id'] ) ?>> -->
+                                                <!-- <h5><?php echo htmlspecialchars( $box['header'] ); ?></h5> -->
+                                                <!-- If you do not want the words "Navigation" or "Tools" to appear, you can safely remove the line above. -->
+
+                                                <?php
+                                                if (htmlspecialchars( $box['header'] ) == "Tools" || htmlspecialchars( $box['header'] ) == "সরঞ্জাম") {
+                                                    continue;
+                                                }
+                                                elseif (htmlspecialchars( $box['header'] ) == "In other languages" || htmlspecialchars( $box['header'] ) == "অন্যান্য ভাষাসমূহ") {
+                                                    continue;
+                                                }
+                                                elseif ( is_array( $box['content'] ) ) { ?>
+                                                    <?php
+                                                    foreach ( $box['content'] as $key => $item ) {
+                                                        echo $this->makeListItem( $key, $item );
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                } else {
+                                                    echo $box['content'];
+                                                }
+                                                ?>
+                                            <!-- </div> -->
+                                        <?php } ?>
+                                        <?php
+                                        // $this->renderNavigation(array('SIDEBAR'));
 
                                         if ($wgSearchPlacement['nav']) {
                                             $this->renderNavigation(array('SEARCHNAV'));
@@ -243,11 +270,11 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
                         </nav>
-                        
+
                     </div>
                 </div>
-            </section> 
-            <!-- /page-header -->                       
+            </section>
+            <!-- /page-header -->
 
             <!-- content -->
             <section id="content" class="mw-body <?php echo $userStateClass; ?>">
@@ -261,47 +288,47 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
                     <div class="row">
                         <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
-                        
+
                             <div id="siteNotice" class="alert alert-info">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                    <?php $this->html('sitenotice') ?> 
+                                    <?php $this->html('sitenotice') ?>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                     <!-- /sitenotice -->
                 <?php endif; ?>
 
-                <div class="clearfix"></div>    
+                <div class="clearfix"></div>
                 <div id="bodyContent" class="row">
                     <?php if ($this->data['newtalk']): ?>
                         <!-- newtalk -->
-                        
+
                         <div class="usermessage col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
-                        
+
                             <div class="alert alert-success">
                                 <i class="fa fa-comments"></i>
                                 <?php $this->html('newtalk') ?>
                             </div>
-                        
+
                         </div>
-                            
-                        
+
+
                         <!-- /newtalk -->
                     <?php endif; ?>
-                        
-                        
+
+
                     <?php if ($this->data['showjumplinks']): ?>
                         <!-- jumpto -->
-                        <div id="jump-to-nav" class="mw-jump">
-                            <?php $this->msg('jumpto') ?> 
+                        <!-- <div id="jump-to-nav" class="mw-jump">
+                            <?php $this->msg('jumpto') ?>
                             <a href="#mw-head"><?php $this->msg('jumptonavigation') ?></a>,
                             <a href="#p-search"><?php $this->msg('jumptosearch') ?></a>
-                        </div>
+                        </div> -->
                         <!-- /jumpto -->
                     <?php endif; ?>
-                        
+
                     <!-- innerbodycontent -->
                     <div id="innerbodycontent">
                         <div class="col-xm-12 col-sm-offset-1 col-sm-8 col-md-offset-1 col-md-8 col-lg-offset-1 col-lg-8">
@@ -310,14 +337,14 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             </h1>
                         </div>
                         <div id="other_language_link" class="col-xm-12 col-sm-2 col-md-2 col-lg-2 pull-right">
-                            <?php 
+                            <?php
                             if ($this->data['language_urls']) {
                                 $this->renderNavigation(array('LANGUAGES'));
                             }
                             ?>
                         </div>
-                        <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">   
-                            <hr>
+                        <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+                            <!-- <hr> -->
                             <!-- subtitle -->
                             <div id="contentSub" <?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
                             <!-- /subtitle -->
@@ -329,7 +356,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             <?php $this->html('bodycontent'); ?>
                         </div>
                     </div>
-                    <!-- /innerbodycontent -->    
+                    <!-- /innerbodycontent -->
 
                     <?php if ($this->data['printfooter']): ?>
                     <!-- printfooter -->
@@ -353,21 +380,21 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
                                 <?php $this->html('dataAfterContent'); ?>
                             </div>
-                        </div>                        
+                        </div>
                         <!-- /dataAfterContent -->
                     <?php endif; ?>
                     <div class="visualClear"></div>
                     <!-- debughtml -->
                     <?php $this->html('debughtml'); ?>
                     <!-- /debughtml -->
-                </div> 
+                </div>
             </section>
-            <!-- /content -->         
-            
+            <!-- /content -->
+
         </div>
         <!-- /#wrapper -->
-        
-        
+
+
         <?php
             /* Support a custom footer, or use MediaWiki's default, if footer.php does not exist. */
             $footerfile = dirname(__FILE__) . '/footer.php';
@@ -392,12 +419,12 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 <div id="footer" class="footer container"<?php $this->html('userlangattributes') ?>>
                     <hr>
                     <div class="row">
-                        <?php 
-                        
+                        <?php
+
                         $footerLinks = $this->getFooterLinks();
 
                         if (is_array($footerLinks)) {
-                            
+
                             foreach ($footerLinks as $category => $links): ?>
 
                                 <ul id="footer-<?php echo $category ?>" class="list-inline text-center">
@@ -426,7 +453,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 <?php
                             endforeach;
                         }
-                        
+
                         $footericons = $this->getFooterIcons("icononly");
                         if (count($footericons) > 0):
                             ?>
@@ -466,8 +493,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Render one or more navigations elements by name, automatically reveresed
      * when UI is in RTL mode
@@ -475,7 +502,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
      * @param $elements array
      */
     private function renderNavigation($elements) {
-        global $wgVectorUseSimpleSearch;        
+        global $wgVectorUseSimpleSearch;
         global $wgMediaWikiBootstrapSkinDisplaySidebarNavigation;
         global $wgMediaWikiBootstrapSkinSidebarItemsInNavbar;
         // If only one element was given, wrap it in an array, allowing more
@@ -519,7 +546,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </ul>
                         <?php
                     break;
-                                        
+
                 case 'EDIT':
                     if (!array_key_exists('edit', $this->data['content_actions'])) {
                         break;
@@ -538,7 +565,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         <?php
                     }
                     break;
-                                        
+
                 case 'ACTIONS':
 
                     $theMsg = 'actions';
@@ -565,8 +592,8 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                         </ul><?php
                     endif;
 
-                    break;    
-                    
+                    break;
+
                 case 'SIDEBARNAV':
                     foreach ($this->data['sidebar'] as $name => $content) :
                         if (!$content) {
@@ -585,7 +612,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 </a>
                                 <ul aria-labelledby="<?php echo htmlspecialchars($name); ?>" role="menu" class="dropdown-menu" <?php $this->html('userlangattributes') ?>><?php
                                     # This is a rather hacky way to name the nav.
-                                    # (There are probably bugs here...) 
+                                    # (There are probably bugs here...)
                                     foreach ($content as $key => $val) :
                                         $navClasses = '';
 
@@ -595,14 +622,14 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                         ?>
 
                                         <li class="<?php echo $navClasses ?>"><?php echo $this->makeLink($key, $val); ?></li><?php
-                                        
+
                                     endforeach; ?>
                                 </ul>
                             <li>
                         </ul><?php
                     endforeach;
                     break;
-                    
+
                 case 'TOOLBOX':
 
                     $theMsg = 'toolbox';
@@ -637,7 +664,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </ul>
                     <?php
                     break;
-                        
+
                 case 'TOP-NAV-SEARCH':
                     ?>
                     <form class="navbar-form navbar-right" action="<?php $this->text('wgScript') ?>" id="nav-searchform">
@@ -647,7 +674,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
                     <?php
                     break;
-                
+
                 case 'PERSONAL':
                     $theMsg = 'personaltools';
                     $theData = $this->getPersonalTools();
@@ -660,7 +687,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     endforeach;
                     ?>
                     <ul class="nav navbar-nav pull-right" role="navigation">
-                        
+
                         <li id="p-notifications" class="dropdown<?php if (count($theData) == 0) echo ' emptyPortlet'; ?>">
                             <?php
                             if (array_key_exists('notifications', $theData)) {
@@ -694,7 +721,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 <ul aria-labelledby="<?php echo $this->msg($theMsg); ?>" role="menu" class="dropdown-menu" <?php $this->html('userlangattributes') ?>>
                                     <?php
                                     foreach ($theData as $key => $item) :
-                                        
+
                                         if (preg_match('/preferences|logout/', $key)) {
                                             echo '<li class="divider"></li>';
                                         } else if (preg_match('/(notifications|login|createaccount)/', $key)) {
@@ -702,7 +729,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                         }
 
                                         echo $this->makeListItem($key, $item);
-                                        
+
                                     endforeach;
                                     ?>
                                 </ul>
@@ -711,7 +738,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </ul>
                     <?php
                     break;
-                    
+
                 case 'SIDEBAR':
                     foreach ($this->data['sidebar'] as $name => $content) {
                         if (!isset($content)) {
@@ -731,7 +758,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                 <ul aria-labelledby="<?php echo htmlspecialchars($name); ?>" role="menu" class="dropdown-menu"><?php
                                 }
                                 # This is a rather hacky way to name the nav.
-                                # (There are probably bugs here...) 
+                                # (There are probably bugs here...)
                                 foreach ($content as $key => $val) :
                                     $navClasses = '';
 
@@ -742,14 +769,14 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
                                     <li class="<?php echo $navClasses ?> main-nav-li"><?php echo $this->makeLink($key, $val); ?></li><?php
                                 endforeach;
-                                
-                            if ($wgMediaWikiBootstrapSkinDisplaySidebarNavigation) { ?>                
-                                </ul>              
+
+                            if ($wgMediaWikiBootstrapSkinDisplaySidebarNavigation) { ?>
+                                </ul>
                             </li><?php
                             }
                     }
-                        break;   
-                                         
+                        break;
+
                 case 'SEARCHNAV':
                     ?>
                     <li>
@@ -761,7 +788,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
                     <?php
                     break;
-                                
+
                 case 'LANGUAGES':
                     $theMsg = 'otherlanguages';
                     $theData = $this->data['language_urls'];
@@ -774,7 +801,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     <?php endforeach; ?>
                     <?php
                     break;
-                
+
             endswitch;
         }
     }
