@@ -37,8 +37,8 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
 
 ## Examples
 This mediawiki skin is used in the following encyclopedia sites,
-* http://en.banglapedia.org
-* http://bn.banglapedia.org
+* https://en.banglapedia.org
+* https://bn.banglapedia.org
 
 ## Screenshots
 
