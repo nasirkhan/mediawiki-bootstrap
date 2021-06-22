@@ -229,7 +229,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                                     <ul class="nav navbar-nav navbar-right">
                                         <?php
                                         foreach ( $this->getSidebar() as $boxName => $box ) { ?>
-                                            <!-- <div id="<?php echo Sanitizer::escapeId( $box['id'] ) ?>"<?php echo Linker::tooltip( $box['id'] ) ?>> -->
+                                            <!-- <div id="<?php echo Sanitizer::escapeIdForAttribute( $box['id'] ) ?>"<?php echo Linker::tooltip( $box['id'] ) ?>> -->
                                                 <!-- <h5><?php echo htmlspecialchars( $box['header'] ); ?></h5> -->
                                                 <!-- If you do not want the words "Navigation" or "Tools" to appear, you can safely remove the line above. -->
 
