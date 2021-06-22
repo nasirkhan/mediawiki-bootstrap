@@ -344,7 +344,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             ?>
                         </div>
                         <div class="col-xm-12 col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
-                            <!-- <hr> -->
                             <!-- subtitle -->
                             <div id="contentSub" <?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
                             <!-- /subtitle -->
@@ -401,7 +400,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
             if (file_exists($footerfile)) : ?>
                 <div id="footer" class="text-center footer container"<?php $this->html('userlangattributes') ?>>
-                    <hr>
                     <div class="row">
                         <div class="col-xm-12 col-sm-12 col-md-12 col-lg-12">
                             <?php include( $footerfile ); ?>
@@ -417,7 +415,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 </div><?php
             else : ?>
                 <div id="footer" class="footer container"<?php $this->html('userlangattributes') ?>>
-                    <hr>
                     <div class="row">
                         <?php
 
