@@ -792,11 +792,11 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 case 'LANGUAGES':
                     $theMsg = 'otherlanguages';
                     $theData = $this->data['language_urls'];
-                    $options = "";
+                    $options = [];
                     ?>
                     <?php foreach ($theData as $key => $val) : ?>
                         <li class="<?php echo $navClasses ?>">
-                            <?php echo $this->makeLink($key, $val, $options); ?>
+                            <?php echo $this->getSkin()->makeLink($key, $val, $options); ?>
                         </li>
                     <?php endforeach; ?>
                     <?php
