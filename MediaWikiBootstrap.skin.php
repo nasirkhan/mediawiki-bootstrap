@@ -437,7 +437,14 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             endforeach;
                         }
 
-                        $footericons = $this->getFooterIcons("icononly");
+                        $footericons = $this->get('footericons');
+                        foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+                                foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
+                                        if ( !isset( $footerIcon['src'] ) ) {
+                                                unset( $footerIconsBlock[$footerIconKey] );
+                                        }
+                                }
+                        }
                         if (count($footericons) > 0):
                             ?>
                             <ul id="footer-icons" class="noprint list-inline text-center">
@@ -673,7 +680,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             }
                             ?>
                         </li>
-                        <?php if ($wgMediaWikiBootstrapSkinLoginLocation == 'navbar'): ?>
+                        <?php if ($this->getSkin()->getConfig( 'MediaWikiBootstrapSkinLoginLocation') == 'navbar'): ?>
                             <li class="dropdown" id="p-createaccount" class="vectorMenu<?php if (count($theData) == 0) echo ' emptyPortlet'; ?>">
                                 <?php
                                 if (array_key_exists('createaccount', $theData)) {
