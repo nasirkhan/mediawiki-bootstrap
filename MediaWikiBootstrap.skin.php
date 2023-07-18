@@ -611,7 +611,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 case 'TOOLBOX':
 
                     $theMsg = 'toolbox';
-                    $theData = array_reverse($this->getToolbox());
+                    $theData = array_reverse( $this->data['sidebar']['TOOLBOX'] );
                     ?>
 
                     <ul class="nav navbar-nav" role="navigation">
