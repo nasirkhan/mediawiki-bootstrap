@@ -109,7 +109,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         $this->data['variant_urls'] = $nav['variants'];
 
         // Output HTML Page
-        $this->html('headelement');
         ?>
         <div id="wrapper" class="container">
             <!-- start navbar -->
@@ -178,9 +177,9 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
             <?php
             if ($wgGroupPermissions['*']['edit'] || $this->data['loggedin']) {
-                $userStateClass += " editable";
+                $userStateClass .= " editable";
             } else {
-                $userStateClass += " not-editable";
+                $userStateClass .= " not-editable";
             }
             ?>
 
@@ -455,12 +454,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </div>
                 </div>
                 <!-- /footer -->
-            <?php endif; ?>
-
-        <?php $this->printTrail(); ?>
-
-        </body>
-        </html><?php
+            <?php endif; ?><?php
         AtEase::restoreWarnings();
     }
 

@@ -9,7 +9,7 @@
   ],
   "type": "skin",
   "requires": {
-    "MediaWiki": ">= 1.35.0"
+    "MediaWiki": ">= 1.39.0"
   },
   "manifest_version": 2,
   "ValidSkinNames": {
@@ -19,6 +19,7 @@
         {
           "name": "mediawikibootstrap",
           "responsive": true,
+          "bodyOnly": true,
           "styles": [
             "skins.mediawikibootstrap"
           ],
