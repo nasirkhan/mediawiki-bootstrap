@@ -1,7 +1,10 @@
 {
 	"@metadata": {
-		"authors": [ "Nasir Khan Saikat" ]
+		"authors": [
+			"Nasir Khan Saikat"
+		]
 	},
-	"skinname-mediawikibootstrap": "MediaWiki Bootstrap",
-	"mediawikibootstrap-desc": "MediaWiki Bootstrap is a simple MediaWiki Skin based on Bootstrap 3. "
+	"skinname-mediawikibootstrap": "MediaWikiBootstrap",
+	"mediawikibootstrap-desc": "MediaWikiBootstrap is a MediaWiki Skin based on Bootstrap 5.*. The skin was developed by Nasir Khan Saikat and contributors. https://github.com/nasirkhan/mediawiki-bootstrap/graphs/contributors",
+	"mediawikibootstrap-no-categories": "No categories."
 }

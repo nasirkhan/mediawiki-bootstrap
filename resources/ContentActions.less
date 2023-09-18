@@ -1,0 +1,53 @@
+@import 'mediawiki.skin.variables';
+@import 'variables.less';
+
+.mw-portlet-views {
+	flex-grow: 1;
+
+	ul {
+		display: flex;
+		height: 3em;
+		justify-content: space-between;
+	}
+
+	li:first-child {
+		justify-content: flex-start;
+	}
+
+	li:hover {
+		background-color: rgba( 0, 0, 0, 0.03 );
+	}
+}
+
+.mw-portlet-cactions h3,
+.mw-portlet-views li {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	min-width: 0;
+	overflow: hidden;
+	flex-basis: auto;
+	font-weight: normal;
+	font-size: 100%;
+	padding: 0;
+}
+
+.mw-portlet-cactions h3,
+.mw-portlet-cactions li a,
+.mw-portlet-views li a {
+	color: @color-base;
+	text-decoration: none;
+}
+
+#ca-view {
+	display: none;
+}
+
+.mw-portlet-cactions.mw-portlet {
+	margin-left: 40px;
+
+	h3 {
+		display: flex;
+		height: 3em;
+	}
+}

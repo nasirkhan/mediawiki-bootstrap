@@ -1,0 +1,38 @@
+@import 'mediawiki.skin.variables';
+@import 'variables.less';
+
+#p-search {
+	width: 100%;
+	padding: 0 8px;
+
+	#searchInput {
+		background-image: url( data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Ctitle%3Esearch%3C%2Ftitle%3E%3Cg%20fill%3D%22%2354595d%22%3E%3Cpath%20d%3D%22M7.5%2013a5.5%205.5%200%20100-11%205.5%205.5%200%20000%2011zm4.55.46A7.43%207.43%200%20017.5%2015a7.5%207.5%200%20115.96-2.95l6.49%206.49-1.41%201.41-6.49-6.49z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E );
+		background-color: #fff;
+		-webkit-appearance: none;
+		max-width: 450px;
+		margin-top: 0;
+		height: 2.25em;
+		border: solid 1px @color-gray-2;
+		border-radius: 2px;
+		padding: 7px 0 7px 29px;
+		box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.05 );
+		outline: 0;
+		background-position: left 6px center;
+		background-repeat: no-repeat;
+		background-size: 18px;
+
+		@media ( max-width: @width-breakpoint-tablet ) {
+			width: 100%;
+		}
+	}
+
+	#searchButton {
+		.client-js & {
+			display: none;
+		}
+	}
+
+	h3 {
+		display: none;
+	}
+}

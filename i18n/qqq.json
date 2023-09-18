@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"..."
+		]
+	},
+	"skinname-mediawikibootstrap": "{{optional}}",
+	"mediawikibootstrap-desc": "{{desc|what=skin|name=MediaWikiBootstrap|url=https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap}}",
+	"mediawikibootstrap-no-categories": "Message to show when no categories available"
+}

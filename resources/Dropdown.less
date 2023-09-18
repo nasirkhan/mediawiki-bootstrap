@@ -1,0 +1,36 @@
+@import 'mediawiki.skin.variables';
+@import 'variables.less';
+
+/* Checkbox hack dropdown */
+.mw-portlet-dropdown ~ .mw-portlet {
+	li {
+		display: block;
+		padding: 0.75em 0.875em;
+	}
+
+	.mw-portlet-body {
+		display: none;
+
+		ul {
+			background: @background-color-article;
+			position: absolute;
+			overflow-y: auto;
+			z-index: 2;
+			box-shadow: 0 5px 17px 0 rgba( 0, 0, 0, 0.24 ), 0 0 1px @color-gray;
+			right: 0;
+			min-width: 200px;
+		}
+	}
+
+	input:checked {
+		~ .mw-portlet-body ul {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		~ .mw-portlet-body {
+			display: block;
+			opacity: 1;
+		}
+	}
+}

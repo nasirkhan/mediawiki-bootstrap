@@ -1,0 +1,35 @@
+@import 'mediawiki.skin.variables';
+@import 'variables.less';
+
+#p-logo {
+	min-height: 70px;
+	flex-grow: 1;
+
+	h1 {
+		font-size: 1rem;
+		margin: 0;
+		border: 0;
+		padding: 0 0 0 10px;
+	}
+
+	img {
+		max-width: none;
+	}
+
+	a {
+		display: flex;
+		align-content: center;
+		height: 70px;
+		align-items: center;
+	}
+
+	@media ( max-width: @width-breakpoint-tablet ) {
+		min-width: 170px;
+		max-width: none;
+		font-size: 0.75em;
+
+		.icon {
+			display: none;
+		}
+	}
+}
