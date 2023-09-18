@@ -109,7 +109,6 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
         $this->data['variant_urls'] = $nav['variants'];
 
         // Output HTML Page
-        $this->html('headelement');
         ?>
         <div id="wrapper" class="container">
             <!-- start navbar -->
@@ -178,9 +177,9 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
 
             <?php
             if ($wgGroupPermissions['*']['edit'] || $this->data['loggedin']) {
-                $userStateClass += " editable";
+                $userStateClass .= " editable";
             } else {
-                $userStateClass += " not-editable";
+                $userStateClass .= " not-editable";
             }
             ?>
 
@@ -438,7 +437,14 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             endforeach;
                         }
 
-                        $footericons = $this->getFooterIcons("icononly");
+                        $footericons = $this->get('footericons');
+                        foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+                                foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
+                                        if ( !isset( $footerIcon['src'] ) ) {
+                                                unset( $footerIconsBlock[$footerIconKey] );
+                                        }
+                                }
+                        }
                         if (count($footericons) > 0):
                             ?>
                             <ul id="footer-icons" class="noprint list-inline text-center">
@@ -455,12 +461,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                     </div>
                 </div>
                 <!-- /footer -->
-            <?php endif; ?>
-
-        <?php $this->printTrail(); ?>
-
-        </body>
-        </html><?php
+            <?php endif; ?><?php
         AtEase::restoreWarnings();
     }
 
@@ -617,7 +618,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                 case 'TOOLBOX':
 
                     $theMsg = 'toolbox';
-                    $theData = array_reverse($this->getToolbox());
+                    $theData = array_reverse( $this->data['sidebar']['TOOLBOX'] );
                     ?>
 
                     <ul class="nav navbar-nav" role="navigation">
@@ -679,7 +680,7 @@ class MediaWikiBootstrapTemplate extends BaseTemplate {
                             }
                             ?>
                         </li>
-                        <?php if ($wgMediaWikiBootstrapSkinLoginLocation == 'navbar'): ?>
+                        <?php if ($this->getSkin()->getConfig( 'MediaWikiBootstrapSkinLoginLocation') == 'navbar'): ?>
                             <li class="dropdown" id="p-createaccount" class="vectorMenu<?php if (count($theData) == 0) echo ' emptyPortlet'; ?>">
                                 <?php
                                 if (array_key_exists('createaccount', $theData)) {
