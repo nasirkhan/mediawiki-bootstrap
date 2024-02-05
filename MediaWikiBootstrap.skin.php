@@ -49,11 +49,6 @@ class SkinMediaWikiBootstrap extends SkinTemplate
         $out->addHeadItem('viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">');
 
         $styles = [];
-        Hooks::run(
-            'SkinMediawikibootstrapStyleModules',
-            [$this, &$styles],
-            '1.35: Use BeforePageDisplay hook'
-        );
         $out->addModuleStyles($styles);
     }
 }
