@@ -56,7 +56,7 @@
   },
   "ResourceModules": {
     "skins.mediawikibootstrap": {
-      "class": "ResourceLoaderSkinModule",
+			"class": "MediaWiki\\ResourceLoader\\SkinModule",
       "features": [
         "elements",
         "interface",
