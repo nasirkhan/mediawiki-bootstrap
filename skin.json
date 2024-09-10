@@ -10,7 +10,7 @@
   ],
   "type": "skin",
   "requires": {
-    "MediaWiki": ">= 1.39.0"
+    "MediaWiki": ">= 1.43.0"
   },
   "manifest_version": 2,
   "ValidSkinNames": {
@@ -62,7 +62,7 @@
         "interface",
         "logo",
         "content-links",
-        "content-thumbnails",
+        "content-media",
         "interface-message-box",
         "interface-category",
         "content-tables",
