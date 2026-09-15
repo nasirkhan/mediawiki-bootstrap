@@ -2,7 +2,7 @@
   "name": "MediaWikiBootstrap",
   "namemsg": "skinname-mediawikibootstrap",
   "descriptionmsg": "mediawikibootstrap-desc",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "url": "https://www.mediawiki.org/wiki/Skin:MediaWikiBootstrap",
   "author": [
     "[https://mediawiki.org/wiki/User:nasirkhan Nasir Khan Saikat]",
@@ -12,73 +12,71 @@
   "requires": {
     "MediaWiki": ">= 1.43.0"
   },
-  "manifest_version": 2,
   "ValidSkinNames": {
     "mediawikibootstrap": {
-      "class": "SkinMediaWikiBootstrap",
+      "class": "MediaWiki\\Skins\\MediaWikiBootstrap\\SkinMediaWikiBootstrap",
       "args": [
         {
           "name": "mediawikibootstrap",
           "responsive": true,
           "bodyOnly": true,
+          "menus": [
+            "user-interface-preferences",
+            "user-page",
+            "user-menu",
+            "notifications",
+            "views",
+            "actions",
+            "variants",
+            "associated-pages"
+          ],
           "styles": ["skins.mediawikibootstrap"],
           "scripts": ["skins.mediawikibootstrap.js"]
         }
       ]
     }
   },
-  "AutoloadClasses": {
-    "SkinMediaWikiBootstrap": "MediaWikiBootstrap.skin.php"
-  },
   "MessagesDirs": {
-    "bootstrap": ["i18n"]
-  },
-  "ResourceFileModulePaths": {
-    "localBasePath": "",
-    "remoteSkinPath": "bootstrap"
-  },
-  "config": {
-    "MediaWikiBootstrapSkinLoginLocation": {
-      "value": "footer"
-    },
-    "MediaWikiBootstrapSkinAnonNavbar": {
-      "value": false
-    },
-    "MediaWikiBootstrapSkinUseStandardLayout": {
-      "value": false
-    },
-    "MediaWikiBootstrapSkinDisplaySidebarNavigation": {
-      "value": false
-    },
-    "MediaWikiBootstrapSkinSidebarItemsInNavbar": {
-      "value": ["coll-print_export"]
-    }
+    "MediaWikiBootstrap": ["i18n"]
   },
   "ResourceModules": {
     "skins.mediawikibootstrap": {
-			"class": "MediaWiki\\ResourceLoader\\SkinModule",
-      "features": [
-        "elements",
-        "interface",
-        "logo",
-        "content-links",
-        "content-media",
-        "interface-message-box",
-        "interface-category",
-        "content-tables",
-        "i18n-ordered-lists",
-        "i18n-all-lists-margins",
-        "i18n-headings"
-      ],
-      "styles": {
-        "css/bootstrap.min.css": { "media": "screen" },
-        "css/font-awesome.min.css": { "media": "screen" },
-        "css/screen.css": { "media": "screen" },
-        "css/print.css": { "media": "print" }
-      }
+      "class": "MediaWiki\\ResourceLoader\\SkinModule",
+      "features": {
+        "normalize": true,
+        "elements": true,
+        "content-media": true,
+        "content-links": true,
+        "content-tables": true,
+        "interface-category": true,
+        "interface-message-box": true,
+        "toc": true
+      },
+      "styles": [
+        "./resources/bootstrap/css/bootstrap.min.css",
+        "./resources/skin.less"
+      ]
     },
     "skins.mediawikibootstrap.js": {
-      "scripts": ["js/bootstrap.min.js", "js/mediawikibootstrap.js"]
+      "scripts": [
+        "./resources/bootstrap/js/bootstrap.bundle.js",
+        "./resources/skin.js"
+      ]
     }
-  }
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "",
+    "remoteSkinPath": "MediaWikiBootstrap"
+  },
+  "AutoloadClasses": {
+    "MediaWiki\\Skins\\MediaWikiBootstrap\\SkinMediaWikiBootstrap": "includes/MediaWikiBootstrap.skin.php"
+  },
+  "ResourceModuleSkinStyles": {},
+  "config": {
+    "MediaWikiBootstrapEnableSidebarMenu": {
+      "value": false,
+      "descriptionmsg": "mediawikibootstrap-config-enablesidebarmenu"
+    }
+  },
+  "manifest_version": 2
 }

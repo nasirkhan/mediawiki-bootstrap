@@ -1,0 +1,11 @@
+<li class="nav-item dropdown mwb-sidebar-dropdown">
+	<a class="nav-link dropdown-toggle" href="#" id="sidebarMenuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		{{msg-menu}}
+	</a>
+	<div class="dropdown-menu" aria-labelledby="sidebarMenuDropdown">
+		{{#data-portlets-sidebar}}
+		{{#data-portlets-first}}{{>Portlet}}{{/data-portlets-first}}
+		{{#array-portlets-rest}}{{>Portlet}}{{/array-portlets-rest}}
+		{{/data-portlets-sidebar}}
+	</div>
+</li>

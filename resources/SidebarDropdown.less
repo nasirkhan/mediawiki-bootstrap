@@ -1,0 +1,40 @@
+/**
+ * Minimal overrides so the sidebar portlets (built for the off-canvas
+ * panel) also read correctly inside a standard Bootstrap dropdown-menu.
+ * Intentionally small: layout/spacing is left to Bootstrap defaults;
+ * values below just mirror Bootstrap 5's own .dropdown-item/.dropdown-header.
+ */
+.mwb-sidebar-dropdown {
+	.dropdown-menu {
+		min-width: 220px;
+	}
+
+	.mw-portlet {
+		padding: 0.25rem 0;
+
+		h3 {
+			display: block;
+			padding: 0.5rem 1rem;
+			margin-bottom: 0;
+			font-size: 0.875rem;
+			color: #6c757d;
+			white-space: nowrap;
+		}
+
+		li {
+			display: block;
+			margin-right: 0;
+		}
+
+		a {
+			display: block;
+			width: 100%;
+			padding: 0.25rem 1rem;
+			clear: both;
+			font-weight: 400;
+			white-space: nowrap;
+			background: transparent;
+			border: 0;
+		}
+	}
+}

@@ -1,0 +1,10 @@
+<footer id="footer" class="mw-footer container text-center" role="contentinfo" {{{html-user-language-attributes}}}>
+    {{#data-footer}}
+    {{!}}{{#data-icons}}{{>FooterList}}{{/data-icons}}
+    {{!}}<div id="footer-list">
+    {{#data-last-modified}}{{>LastModifiedLine}}{{/data-last-modified}}
+    <div id="copyright">{{#data-copyright}}{{{html}}}{{/data-copyright}}</div>
+    {{!}}{{#data-places}}{{>FooterList}}{{/data-places}}
+    {{!}}</div>
+    {{/data-footer}}
+</footer>

@@ -1,0 +1,44 @@
+@import 'mediawiki.skin.variables';
+@import 'variables.less';
+
+.mw-footer {
+	border-top: 1px solid @color-gray;
+	margin-top: 2em;
+	padding: 1.5em 0;
+	text-align: center;
+	color: @color-gray-2;
+	font-size: 0.85em;
+
+	#footer-info,
+	#footer-places,
+	#footer-icons {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	#footer-info li {
+		margin-bottom: 0.5em;
+	}
+
+	#footer-places {
+		li {
+			display: inline-block;
+			margin: 0 0.75em;
+		}
+	}
+
+	#footer-icons {
+		margin-top: 1em;
+
+		li {
+			display: inline-block;
+			margin: 0 0.5em;
+			vertical-align: middle;
+		}
+
+		img {
+			vertical-align: middle;
+		}
+	}
+}
