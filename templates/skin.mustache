@@ -24,7 +24,8 @@
 						<a class="nav-link" href="{{link-mainpage}}">{{msg-mainpage}}</a>
 					</li>
 					{{/array-main-menu}}
-					{{>SidebarDropdown}}
+					{{^is-anon}}{{>SidebarDropdown}}{{/is-anon}}
+					{{^is-anon}}{{>PageActionsDropdown}}{{/is-anon}}
 				</ul>
 				{{{html-search-box}}}
 				</div>

@@ -16,6 +16,7 @@ class SkinMediaWikiBootstrap extends SkinMustache {
 			'html-search-box' => $this->getSearchBoxHtml(),
 			'msg-mainpage' => $this->msg( 'mainpage' )->text(),
 			'msg-menu' => $this->msg( 'mediawikibootstrap-menu' )->text(),
+			'msg-actions' => $this->msg( 'actions' )->text(),
 			'enable-sidebar-menu' => $this->getConfig()->get( 'MediaWikiBootstrapEnableSidebarMenu' ),
 			'array-main-menu' => $this->getMainMenuData(),
 		] );

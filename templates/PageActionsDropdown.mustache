@@ -1,0 +1,30 @@
+<li class="nav-item dropdown page-actions-dropdown">
+	<a class="nav-link dropdown-toggle" href="#" id="pageActionsMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		{{msg-actions}}
+	</a>
+	<ul class="dropdown-menu" aria-labelledby="pageActionsMenu">
+		{{#data-portlets.data-associated-pages}}
+		{{#array-items}}
+		{{#array-links}}
+		<li><a class="dropdown-item" {{#array-attributes}}{{key}}="{{value}}"{{/array-attributes}}>{{text}}</a></li>
+		{{/array-links}}
+		{{/array-items}}
+		{{/data-portlets.data-associated-pages}}
+		{{#data-portlets.data-views}}
+		<li><hr class="dropdown-divider"></li>
+		{{#array-items}}
+		{{#array-links}}
+		<li><a class="dropdown-item" {{#array-attributes}}{{key}}="{{value}}"{{/array-attributes}}>{{text}}</a></li>
+		{{/array-links}}
+		{{/array-items}}
+		{{/data-portlets.data-views}}
+		{{#data-portlets.data-actions}}
+		<li><hr class="dropdown-divider"></li>
+		{{#array-items}}
+		{{#array-links}}
+		<li><a class="dropdown-item" {{#array-attributes}}{{key}}="{{value}}"{{/array-attributes}}>{{text}}</a></li>
+		{{/array-links}}
+		{{/array-items}}
+		{{/data-portlets.data-actions}}
+	</ul>
+</li>
