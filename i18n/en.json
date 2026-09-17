@@ -9,5 +9,6 @@
 	"mediawikibootstrap-no-categories": "No categories.",
 	"mediawikibootstrap-menu": "Menu",
 	"mediawikibootstrap-config-enablesidebarmenu": "Show the off-canvas sidebar menu (hamburger icon) in addition to the top navbar menu dropdown.",
-	"mediawikibootstrap-mainmenu": "* Main Page|Main Page"
+	"mediawikibootstrap-mainmenu": "* Main Page|Main Page\n* Contact|Special:Contact",
+	"mediawikibootstrap-mainpage-title": ""
 }

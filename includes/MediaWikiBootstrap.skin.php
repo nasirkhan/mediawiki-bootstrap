@@ -17,6 +17,7 @@ class SkinMediaWikiBootstrap extends SkinMustache {
 			'msg-mainpage' => $this->msg( 'mainpage' )->text(),
 			'msg-menu' => $this->msg( 'mediawikibootstrap-menu' )->text(),
 			'msg-actions' => $this->msg( 'actions' )->text(),
+			'msg-mainpage-display-title' => $this->getMainPageDisplayTitle(),
 			'enable-sidebar-menu' => $this->getConfig()->get( 'MediaWikiBootstrapEnableSidebarMenu' ),
 			'array-main-menu' => $this->getMainMenuData(),
 		] );
@@ -33,6 +34,14 @@ class SkinMediaWikiBootstrap extends SkinMustache {
 	 *
 	 * @return array List of [ 'text' => ..., 'href' => ... ]
 	 */
+	private function getMainPageDisplayTitle(): string|false {
+		$msg = $this->msg( 'mediawikibootstrap-mainpage-title' );
+		if ( !$msg->exists() || $msg->isBlank() ) {
+			return false;
+		}
+		return $msg->text();
+	}
+
 	private function getMainMenuData(): array {
 		$bar = [];
 		$this->addToSidebar( $bar, 'mediawikibootstrap-mainmenu' );

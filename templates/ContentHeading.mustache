@@ -1,2 +1,3 @@
-{{{html-title-heading}}}
+{{^is-mainpage}}{{{html-title-heading}}}{{/is-mainpage}}
+{{#is-mainpage}}{{#msg-mainpage-display-title}}<h1 id="firstHeading" class="firstHeading mw-first-heading">{{msg-mainpage-display-title}}</h1>{{/msg-mainpage-display-title}}{{^msg-mainpage-display-title}}{{{html-title-heading}}}{{/msg-mainpage-display-title}}{{/is-mainpage}}
 <a href="#lang" class="mw-interlanguage-selector mw-ui-button content__language-btn">{{msg-otherlanguages}}</a>
