@@ -1,0 +1,14 @@
+{{#data-portlets.data-user-menu}}
+<li class="nav-item dropdown">
+	<a class="nav-link dropdown-toggle" href="#" id="navbarUserMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		{{label}}
+	</a>
+	<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserMenu">
+		{{#array-items}}
+		{{#array-links}}
+		<li><a class="dropdown-item" {{#array-attributes}}{{key}}="{{value}}"{{/array-attributes}}>{{text}}</a></li>
+		{{/array-links}}
+		{{/array-items}}
+	</ul>
+</li>
+{{/data-portlets.data-user-menu}}

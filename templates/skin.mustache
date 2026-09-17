@@ -27,6 +27,10 @@
 					{{^is-anon}}{{>SidebarDropdown}}{{/is-anon}}
 					{{^is-anon}}{{>PageActionsDropdown}}{{/is-anon}}
 				</ul>
+				<ul class="navbar-nav ms-2 mb-2 mb-lg-0">
+					{{>NavbarNotifications}}
+					{{>NavbarUserMenu}}
+				</ul>
 				{{{html-search-box}}}
 				</div>
 			</nav>
@@ -50,8 +54,6 @@
 	</main>
 
 	<div>
-		{{>Notifications}}
-		{{>Dropdown}}{{>PersonalMenu}}
 		{{#enable-sidebar-menu}}{{>Sidebar}}{{/enable-sidebar-menu}}
 		{{>Notices}}
 		{{>Languages}}

@@ -34,7 +34,16 @@ a {
 
 .mw-header {
 	position: relative;
-	z-index: 3;
+
+	.navbar {
+		position: relative;
+		z-index: 1050;
+	}
+
+	.dropdown-menu {
+		z-index: 1051;
+		pointer-events: auto;
+	}
 }
 
 /** CONTENT */
