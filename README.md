@@ -83,6 +83,23 @@ You can add custom text (e.g. a credit line) to the footer without touching any 
 If the page does not exist or is empty, no custom footer is shown.
 
 
+## Footer Copyright Notice
+
+To display a custom copyright text (e.g. "All rights reserved.") without a license icon, set the following in `LocalSettings.php`:
+
+```php
+$wgRightsText = "All rights reserved.";
+$wgRightsUrl  = "";
+$wgRightsIcon = "";
+// Prevent a broken <img> tag with alt text appearing in the footer.
+// MediaWiki includes the icon block whenever $wgRightsIcon is set (even to ""),
+// so the block must be cleared explicitly.
+$wgFooterIcons['copyright'] = [];
+```
+
+Without `$wgFooterIcons['copyright'] = []`, MediaWiki generates `<img src="" alt="All rights reserved.">` — a broken image whose alt text appears in the footer. Clearing the block removes the image entirely while leaving the copyright text (from `$wgRightsText`) unaffected.
+
+
 ## Examples
 This mediawiki skin is used in the following encyclopedia sites,
 * https://en.banglapedia.org
