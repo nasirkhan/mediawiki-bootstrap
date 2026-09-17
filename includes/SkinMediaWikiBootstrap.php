@@ -12,9 +12,13 @@ class SkinMediaWikiBootstrap extends SkinMustache {
 	public function getTemplateData(): array {
 		$parentData = parent::getTemplateData();
 
+		$customFooterMsg = $this->msg( 'bootstrap-custom-footer' );
+		$customFooter = $customFooterMsg->isBlank() ? '' : $customFooterMsg->parse();
+
 		return array_merge( $parentData, [
 			'html-search-box' => $this->getSearchBoxHtml(),
 			'msg-mainpage' => $this->msg( 'mainpage' )->text(),
+			'html-custom-footer' => $customFooter,
 		] );
 	}
 

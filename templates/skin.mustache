@@ -63,4 +63,9 @@
 <div id="footer" class="container my-4">
 	{{>Footer}}
 	{{{html-credit-line}}}
+	{{#html-custom-footer}}
+	<div class="text-center mt-2" style="font-size: 0.85em; color: #666;">
+		{{{html-custom-footer}}}
+	</div>
+	{{/html-custom-footer}}
 </div>

@@ -12,6 +12,11 @@ class SkinMediaWikiBootstrap extends SkinMustache {
 	public function getTemplateData(): array {
 		$parentData = parent::getTemplateData();
 
+		$customFooterMsg = $this->msg( 'bootstrap-custom-footer' );
+		$customFooter = ( $customFooterMsg->exists() && !$customFooterMsg->isBlank() )
+			? $customFooterMsg->parse()
+			: '';
+
 		return array_merge( $parentData, [
 			'html-search-box' => $this->getSearchBoxHtml(),
 			'msg-mainpage' => $this->msg( 'mainpage' )->text(),
@@ -20,6 +25,7 @@ class SkinMediaWikiBootstrap extends SkinMustache {
 			'msg-mainpage-display-title' => $this->getMainPageDisplayTitle(),
 			'enable-sidebar-menu' => $this->getConfig()->get( 'MediaWikiBootstrapEnableSidebarMenu' ),
 			'array-main-menu' => $this->getMainMenuData(),
+			'html-custom-footer' => $customFooter,
 		] );
 	}
 
