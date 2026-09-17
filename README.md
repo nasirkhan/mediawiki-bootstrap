@@ -35,6 +35,38 @@ A customizable responsive MediaWiki skin based on Bootstrap3. Check the [MediaWi
 5. Customize the other settings and modify the style based on your need.
 
 
+## Customizing the Header
+
+### Navigation Menu
+
+The top navbar links are driven by the wiki page `MediaWiki:Mediawikibootstrap-mainmenu`. Edit it like any other wiki page using the same `* Label|Target` syntax as `MediaWiki:Sidebar`.
+
+Navigate to `MediaWiki:Mediawikibootstrap-mainmenu` and add one link per line:
+
+```
+* Main Page|Main Page
+* About|About
+* Contact|Special:Contact
+* External Site|https://example.com
+```
+
+- Lines without a `|` separator (section headings) are ignored — the navbar is a flat list.
+- The target can be a wiki page name or a full URL.
+- Changes take effect immediately after saving.
+
+### Main Page Display Title
+
+You can override the title shown in the header on the main page by editing `MediaWiki:Mediawikibootstrap-mainpage-title`.
+
+Navigate to `MediaWiki:Mediawikibootstrap-mainpage-title` and enter the title text:
+
+```
+Welcome to My Wiki
+```
+
+If the page does not exist or is empty, the default site name is used.
+
+
 ## Custom Footer Text
 
 You can add custom text (e.g. a credit line) to the footer without touching any code. The skin reads content from the `MediaWiki:Bootstrap-custom-footer` system message page and renders it below the standard footer.
