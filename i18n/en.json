@@ -6,6 +6,7 @@
 	},
 	"skinname-mediawikibootstrap": "MediaWikiBootstrap",
 	"mediawikibootstrap-desc": "MediaWikiBootstrap is a MediaWiki Skin based on Bootstrap 5.*. The skin was developed by Nasir Khan Saikat and contributors. https://github.com/nasirkhan/mediawiki-bootstrap/graphs/contributors",
+	"mediawikibootstrap-categories": "Category",
 	"mediawikibootstrap-no-categories": "No categories.",
 	"mediawikibootstrap-menu": "Menu",
 	"mediawikibootstrap-config-enablesidebarmenu": "Show the off-canvas sidebar menu (hamburger icon) in addition to the top navbar menu dropdown.",

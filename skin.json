@@ -30,6 +30,10 @@
             "variants",
             "associated-pages"
           ],
+          "messages": [
+            "mediawikibootstrap-no-categories",
+            "mediawikibootstrap-categories"
+          ],
           "styles": ["skins.mediawikibootstrap"],
           "scripts": ["skins.mediawikibootstrap.js"]
         }

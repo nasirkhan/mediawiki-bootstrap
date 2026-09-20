@@ -129,3 +129,30 @@ div.thumbinner {
 	}
 }
 
+/** Category links */
+#catlinks {
+	background: none;
+	border: none;
+	padding: 0;
+	margin-top: 0.5em;
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: inline;
+
+		li {
+			display: inline;
+
+			&::after {
+				content: ' · ';
+			}
+
+			&:last-child::after {
+				content: '';
+			}
+		}
+	}
+}
+
