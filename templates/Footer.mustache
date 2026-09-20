@@ -5,6 +5,7 @@
     {{#data-last-modified}}{{>LastModifiedLine}}{{/data-last-modified}}
     <div id="copyright">{{#data-copyright}}{{{html}}}{{/data-copyright}}</div>
     {{!}}{{#data-places}}{{>FooterList}}{{/data-places}}
+    {{#is-anon}}<div id="footer-login"><a href="{{link-login}}">{{msg-login}}</a></div>{{/is-anon}}
     {{!}}</div>
     {{/data-footer}}
 </footer>

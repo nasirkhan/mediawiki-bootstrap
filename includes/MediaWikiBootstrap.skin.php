@@ -3,6 +3,7 @@
 namespace MediaWiki\Skins\MediaWikiBootstrap;
 
 use MediaWiki\Skin\SkinMustache;
+use MediaWiki\SpecialPage\SpecialPage;
 
 class SkinMediaWikiBootstrap extends SkinMustache {
 
@@ -19,6 +20,7 @@ class SkinMediaWikiBootstrap extends SkinMustache {
 
 		return array_merge( $parentData, [
 			'html-search-box' => $this->getSearchBoxHtml(),
+			'link-login' => SpecialPage::getTitleFor( 'UserLogin' )->getLocalURL(),
 			'msg-mainpage' => $this->msg( 'mainpage' )->text(),
 			'msg-menu' => $this->msg( 'mediawikibootstrap-menu' )->text(),
 			'msg-actions' => $this->msg( 'actions' )->text(),

@@ -32,7 +32,8 @@
           ],
           "messages": [
             "mediawikibootstrap-no-categories",
-            "mediawikibootstrap-categories"
+            "mediawikibootstrap-categories",
+            "login"
           ],
           "styles": ["skins.mediawikibootstrap"],
           "scripts": ["skins.mediawikibootstrap.js"]
