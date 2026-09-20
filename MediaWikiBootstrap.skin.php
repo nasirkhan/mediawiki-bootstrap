@@ -312,8 +312,28 @@ class MediaWikiBootstrapTemplate extends BaseTemplate
                         </div>
                         <div id="other_language_link" class="col-xm-12 col-sm-2 col-md-2 col-lg-2 pull-right">
                             <?php
-                            if ($this->data['language_urls']) {
-                                $this->renderNavigation(array('LANGUAGES'));
+                            global $wgBengaliWikiUrl;
+                            $bnHref = null;
+                            // Prefer an explicit interlanguage link set on the page (e.g. [[bn:Bengali Title]])
+                            if (!empty($this->data['language_urls'])) {
+                                if (isset($this->data['language_urls']['bn'])) {
+                                    $bnHref = $this->data['language_urls']['bn']['href'];
+                                } else {
+                                    foreach ($this->data['language_urls'] as $langUrl) {
+                                        if (isset($langUrl['lang']) && $langUrl['lang'] === 'bn') {
+                                            $bnHref = $langUrl['href'];
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            // Fall back: construct the URL from the Bengali wiki base + current page title
+                            if (!$bnHref && !empty($wgBengaliWikiUrl)) {
+                                $pageTitle = $this->getSkin()->getTitle()->getPrefixedURL();
+                                $bnHref = rtrim($wgBengaliWikiUrl, '/') . '/wiki/' . $pageTitle;
+                            }
+                            if ($bnHref) {
+                                echo '<a href="' . htmlspecialchars($bnHref) . '" class="lang-switcher-bn" hreflang="bn" title="বাংলায় পড়ুন"><span class="lang-icon">&#127988;</span> বাংলা</a>';
                             }
                             ?>
                         </div>

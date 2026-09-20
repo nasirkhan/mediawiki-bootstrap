@@ -83,8 +83,30 @@ h1#firstHeading {
     margin: 0;
     padding: 0;
 }
-#other_language_link{
+#other_language_link {
     list-style: none;
+    text-align: right;
+    padding-top: 8px;
+}
+
+.lang-switcher-bn {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #1a6496;
+    color: #fff !important;
+    border-radius: 4px;
+    border: 1px solid #0f3c5a;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none !important;
+    white-space: nowrap;
+}
+
+.lang-switcher-bn:hover,
+.lang-switcher-bn:focus {
+    background-color: #144f77;
+    color: #fff !important;
+    text-decoration: none !important;
 }
 
 .raw-table td{
