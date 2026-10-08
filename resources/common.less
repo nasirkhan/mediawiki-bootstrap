@@ -66,6 +66,11 @@ main {
 		position: relative;
 	}
 
+	&__heading-row {
+		display: flex;
+		align-items: center;
+	}
+
 	&__heading {
 		padding: 0 50px 0 0;
 		margin: 0;
@@ -73,8 +78,13 @@ main {
 		float: left;
 	}
 
-	&__language-btn {
-		float: right;
+	&__language-links {
+		margin-left: auto;
+		flex-shrink: 0;
+
+		li {
+			display: inline;
+		}
 	}
 
 	&__indicators {
