@@ -131,8 +131,9 @@ a:not([name]) {
 a:visited {
     color: #0C2B63;
 }
-#mw-content-text.mw-content-ltr a{
+#mw-content-text a{
     font-variant:small-caps;
+    text-decoration: none;
 }
 #mw-pages a {
 	font-variant: normal;
