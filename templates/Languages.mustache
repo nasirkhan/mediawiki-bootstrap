@@ -1,2 +1,9 @@
 {{#data-portlets.data-variants}}{{>Portlet}}{{/data-portlets.data-variants}}
-{{#data-portlets.data-languages}}{{>Portlet}}{{/data-portlets.data-languages}}
+{{#data-portlets.data-languages}}
+<div id="{{id}}" class="mw-portlet mw-portlet-lang border-top mt-3 pt-2">
+    <h3 class="mb-1" style="font-size:0.9em;color:#555;">{{label}}</h3>
+    <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
+        {{#array-items}}{{>ListItem}}{{/array-items}}
+    </ul>
+</div>
+{{/data-portlets.data-languages}}

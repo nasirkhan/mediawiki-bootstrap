@@ -1,35 +1,39 @@
 
 <header class="mw-header">
-	<nav class="navbar navbar-expand-lg container d-flex flex-column">
-		<div class="d-flex align-items-center w-100">
-			<div class="mw-header-logo flex-shrink-1 flex-grow-1 overflow-hidden me-2">{{>Logo}}</div>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse align-items-center w-100" id="navbarSupportedContent">
-			<div class="d-flex">
-				<ul class="navbar-nav mb-2 mb-lg-0">
-					{{#array-main-menu}}
-					<li class="nav-item">
-						<a class="nav-link" href="{{href}}">{{text}}</a>
-					</li>
-					{{/array-main-menu}}
-					{{^array-main-menu}}
-					<li class="nav-item">
-						<a class="nav-link" href="{{link-mainpage}}">{{msg-mainpage}}</a>
-					</li>
-					{{/array-main-menu}}
-					{{^is-anon}}{{>SidebarDropdown}}{{/is-anon}}
-					{{^is-anon}}{{>PageActionsDropdown}}{{/is-anon}}
-				</ul>
-				<ul class="navbar-nav ms-2 mb-2 mb-lg-0">
-					{{>NavbarNotifications}}
-					{{>NavbarUserMenu}}
-				</ul>
-			</div>
-			<div class="ms-auto">
-				{{{html-search-box}}}
+	<nav class="navbar navbar-expand-lg container">
+		<div class="row justify-content-sm-center w-100">
+			<div class="col-12 col-sm-10 d-flex flex-column">
+				<div class="d-flex align-items-center w-100">
+					<div class="mw-header-logo flex-shrink-1 flex-grow-1 overflow-hidden mb-1">{{>Logo}}</div>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse align-items-center w-100" id="navbarSupportedContent">
+					<div class="d-flex">
+						<ul class="navbar-nav mb-2 mb-lg-0">
+							{{#array-main-menu}}
+							<li class="nav-item">
+								<a class="nav-link" href="{{href}}">{{text}}</a>
+							</li>
+							{{/array-main-menu}}
+							{{^array-main-menu}}
+							<li class="nav-item">
+								<a class="nav-link" href="{{link-mainpage}}">{{msg-mainpage}}</a>
+							</li>
+							{{/array-main-menu}}
+							{{^is-anon}}{{>SidebarDropdown}}{{/is-anon}}
+							{{^is-anon}}{{>PageActionsDropdown}}{{/is-anon}}
+						</ul>
+						<ul class="navbar-nav ms-2 mb-2 mb-lg-0">
+							{{>NavbarNotifications}}
+							{{>NavbarUserMenu}}
+						</ul>
+					</div>
+					<div class="ms-auto">
+						{{{html-search-box}}}
+					</div>
+				</div>
 			</div>
 		</div>
 	</nav>
