@@ -2,10 +2,21 @@
 
 namespace MediaWiki\Skins\MediaWikiBootstrap;
 
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Skin\SkinMustache;
 use MediaWiki\SpecialPage\SpecialPage;
 
 class SkinMediaWikiBootstrap extends SkinMustache {
+
+	public function initPage( OutputPage $out ): void {
+		parent::initPage( $out );
+		$out->addLink( [ 'rel' => 'preconnect', 'href' => 'https://fonts.googleapis.com' ] );
+		$out->addLink( [ 'rel' => 'preconnect', 'href' => 'https://fonts.gstatic.com', 'crossorigin' => '' ] );
+		$out->addLink( [
+			'rel' => 'stylesheet',
+			'href' => 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Noto+Sans+Bengali:wght@100..900&display=swap',
+		] );
+	}
 
 	/**
 	 * @return array Template data merged with our own additions.
